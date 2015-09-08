@@ -1,2 +1,4 @@
-# BraftonJoomla3Component
-Joomla 3 Importer
+Joomla-3.0-importer
+===================
+
+Joomla 3.0 + importer

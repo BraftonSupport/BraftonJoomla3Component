@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+	<name>com_braftonarticles</name>
+	<creationDate>August 2012</creationDate>
+	<author>ContentLEAD</author>
+	<authorEmail>techsupport@contentlead.com</authorEmail>
+	<authorUrl>http://www.contentlead.com</authorUrl>
+	<copyright>Copyright 2012</copyright>
+	<license>GPL</license>
+	<version>1.0</version>
+	<description>Imports articles from Brafton/ContentLEAD/Castleford XML feeds</description>
+	<scriptfile>com_braftonarticles.script.php</scriptfile>
+ 
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+
+ 
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>braftonarticles.php</filename>
+		<filename>controller.php</filename>
+		<folder>views</folder>
+		<folder>models</folder>
+	</files>
+ 
+	<administration>
+		<menu img="../media/com_braftonarticles/images/logo-16x16.png">COM_BRAFTONARTICLES</menu>
+		<files folder="admin">
+			<filename>index.html</filename>
+			<filename>braftonarticles.php</filename>
+			<filename>controller.php</filename>
+			<folder>controllers</folder>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>models</folder>
+			<folder>views</folder>
+			<folder>language</folder>
+		</files>
+		
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/en-GB.com_braftonarticles.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_braftonarticles.sys.ini</language>
+		</languages>
+	</administration>
+	
+	<media destination="com_braftonarticles">
+		<folder>css</folder>
+		<folder>images</folder>
+	</media>
+</extension>
