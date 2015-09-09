@@ -161,32 +161,33 @@ JHTML::_('behavior.tooltip');
         <div class="setting">
             <h3>Ending Title</h3>
             <p></p>
-            <input type="text" name="" value=""/>
+            <input type="text" name="end-title" value="<?php echo $this->endTitle; ?>"/>
         </div>
         <div class="setting">
             <h3>Ending Subtitle</h3>
             <p></p>
-            <input type="text" name="" value=""/>
+            <input type="text" name="end-subtitle" value="<?php echo $this->endSubtitle; ?>"/>
         </div>
         <div class="setting">
             <h3>Ending Button Text</h3>
             <p></p>
-            <input type="text" name="" value=""/>
+            <input type="text" name="end-text" value="<?php echo $this->endText; ?>"/>
         </div>
         <div class="setting">
             <h3>Ending Button Link</h3>
             <p></p>
-            <input type="text" name="" value=""/>
+            <input type="text" name="end-link" value="<?php echo $this->endLink; ?>"/>
         </div>
         <div class="setting">
             <h3>Ending Asset ID</h3>
             <p></p>
-            <input type="text" name="" value=""/>
+            <input type="text" name="end-asset-id" value="<?php echo $this->endAssetId; ?>"/>
         </div>
         <div class="setting">
             <h3>Ending Background</h3>
             <p></p>
-            <input type="file" name="end-background" value="<?php echo $this->endBackground; ?>"/>
+            <input type="file" name="end-background" value=""/>
+            <img src="<?php echo $this->endBackground; ?>" style="max-width:250px; height:auto"/>
         </div>
     </div>
 </fieldset>

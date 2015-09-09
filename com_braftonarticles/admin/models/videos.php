@@ -158,7 +158,8 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
 
 			//grab Joomla image location information
 			$imagesFolder = JPATH_ROOT . '/images';
-			$imagesUrl = JURI::base(true) . '/images';
+			//$imagesUrl = JURI::base(true) . '/images';
+            $imagesUrl = JURI::root(true). '/images';
 			//modify article title to make appropriate Image filename
 			$filename = preg_replace(array('/[^a-zA-Z0-9]+/', '/^-+/', '/-+$/'), array('-', '', ''), strtolower($thisArticle->fields['title']));
 			
@@ -329,11 +330,54 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
             $source = $this->generate_source_tag( $path, $resolution );
             $embedCode .= $source; 
         }
+        $useCTA = true;
+        $cta = '';
+        if($useCTA){
+            $this->options->load('pause-text');
+            $pauseText = $this->options->value;
+            $this->options->load('pause-link');
+            $pauseLink = $this->options->value;
+            $this->options->load('pause-asset-id');
+            $pauseAsset = $this->options->value;
+            $marpro = '';
+            $this->options->load('end-title');
+            $endTitle = $this->options->value;
+            $this->options->load('end-subtitle');
+            $endSubtitle = $this->options->value;
+            $this->options->load('end-text');
+            $endButtonText = $this->options->value;
+            $this->options->load('end-link');
+            $endButtonLink = $this->options->value;
+            $this->options->load('end-asset-id');
+            $endAsset = $this->options->value;
+            $this->options->load('end-background');
+            $endBackground = $this->options->value;
+            $videoBackground = '';
+            $cta = <<<CTA
+                    ,
+                    pauseCallToAction: {
+                        $marpro
+                        link: "$pauseLink",
+                        text: "$pauseText"
+                    },
+                    endOfVideoOptions: {
+                        $videoBackground
+                        callToAction: {
+                            title: "$endTitle",
+                            subtitle: "$endSubtitle",
+                            button: {
+                                link: "$endButtonLink",
+                                text: "$endButtonText",
+                            }
+                        }
+                    }
+CTA;
+        }
         $script = <<<SCRIPT
         <script type="text/javascript">
         var atlantisVideo = AtlantisJS.Init({
             videos: [{
-                id: "video-{$videoId}"
+                id: "video-{$videoId}"$cta
             }]
         });
         </script>

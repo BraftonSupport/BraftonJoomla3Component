@@ -7,7 +7,7 @@
 	<authorUrl>http://www.contentlead.com</authorUrl>
 	<copyright>Copyright 2012</copyright>
 	<license>GPL</license>
-	<version>3.0.1</version>
+	<version>3.0.2</version>
 	<description>Imports articles from Brafton/ContentLEAD/Castleford XML feeds</description>
 	<scriptfile>com_braftonarticles.script.php</scriptfile>
  
@@ -36,6 +36,10 @@
  
 	<administration>
 		<menu img="../media/com_braftonarticles/images/logo-16x16.png">COM_BRAFTONARTICLES</menu>
+        <submenu>
+            <menu link="" view="" alt="">COM_BRAFTONARTICLES_VIDEO</menu>
+            <menu link="option=com_braftonarticles" view="log" alt="">COM_BRAFTONARTICLES_LOG</menu>
+        </submenu>
 		<files folder="admin">
 			<filename>index.html</filename>
 			<filename>braftonarticles.php</filename>
@@ -57,5 +61,6 @@
 	<media destination="com_braftonarticles">
 		<folder>css</folder>
 		<folder>images</folder>
+        <folder>js</folder>
 	</media>
 </extension>

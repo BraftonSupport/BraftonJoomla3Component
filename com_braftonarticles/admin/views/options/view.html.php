@@ -43,6 +43,8 @@ class BraftonArticlesViewOptions extends JViewLegacy
 		JToolBarHelper::divider();
 		$toolbar->appendButton('Confirm', 'This will build the importing category structure from scratch! Are you sure you want to do this?', 'refresh', 'Sync Categories', 'devtools.sync_categories', false);
 		//$toolbar->appendButton('Confirm', 'This will attempt to rebuild the listing of loaded Brafton content. This may have severe consequences and is irreversible! Are you sure you want to do this?', 'purge', 'Rebuild Content Listing', 'devtools.rebuild_content_listing', false);
+        $toolbar->appendButton('Confirm', 'This will run your article importer', 'refresh', 'Run Article Importer', 'cron.loadArticles', false);
+        $toolbar->appendButton('Confirm', 'This will run your Video Importer', 'refresh', 'Run Video Importer', 'cron.loadVideos', false);
 		
 		$this->api_key = $this->get('APIKey');
 		$this->base_url = $this->get('BaseURL');
@@ -73,7 +75,10 @@ class BraftonArticlesViewOptions extends JViewLegacy
         
 		$this->import_assets = $this->get('ImportAssets');
         $this->stopImporter = $this->get('StopImporter');
-		
+        if($this->stopImporter == 'On'){
+            $app = JFactory::getApplication();        
+            $app->enqueueMessage(JText::_('There was a vital failure when running your importer.  Please check the Log for errors.  Once you have solved the issue Turn Importer Error to Off under Advanced Options'), 'error');
+        }
 		parent::display($tpl);
 	}
 	

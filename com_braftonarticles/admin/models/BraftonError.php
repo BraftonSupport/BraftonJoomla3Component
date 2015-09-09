@@ -106,19 +106,18 @@ class BraftonErrorReport {
             //$this->level = 2;
             if(($errorLevel == 1 || ($this->debug == true && $this->level == 1)) && strpos($this->domain, 'localhost') === false){
                 //prevent possible loop on some systems
-
                 $ch  = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $this->post_url);
                 curl_setopt($ch, CURLOPT_HEADER, 0);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $post_args);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_exec($ch);
-                //variable_set('brafton_debug_mode', 1);
-                //header("LOCATION:$this->url?b_error=vital");
+                $this->log_for_vital_error();                
+                header("LOCATION:$this->url");
                 return;
             } else if($errorLevel == 1){
-                //variable_set('brafton_debug_mode', 1);
-                header("LOCATION:$this->url?b_error=vital");
+                $this->log_for_vital_error();
+                header("LOCATION:$this->url");
             }else{
                 return;
             }
@@ -135,6 +134,21 @@ class BraftonErrorReport {
         $error = error_get_last();
         if ( $error["type"] == E_ERROR )
             $this->log_error( $error["type"], $error["message"], $error["file"], $error["line"] );
+    }
+    private function log_for_vital_error(){
+        $turnOn = 'On';
+        $option = 'stop-importer';
+        $db = JFactory::getDbo();
+        $q = $db->getQuery(true);
+        $set = array(
+            $db->quoteName('value'). '='. $db->quote($turnOn)
+        );
+        $where = array(
+            $db->quoteName('option'). '='.$db->quote($option)    
+        );
+        $q->update($db->quoteName('#__brafton_options'))->set($set)->where($where);
+        $db->setQuery($q);
+        $result = $db->execute();
     }
 
 }

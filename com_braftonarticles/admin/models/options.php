@@ -32,7 +32,7 @@ class BraftonArticlesModelOptions extends JModelList
 	function setdatabase($value,$option){
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
- 
+        $value = $query->escape($value);
 // Fields to update.
 $fieldsapi = array(
     $db->quoteName('value').'=\''.$value.'\'',
@@ -43,7 +43,6 @@ $conditionsapi = array(
     $db->quoteName('option').'=\''.$option.'\'',
 
 );
- 
 $query->update($db->quoteName('#__brafton_options'))->set($fieldsapi)->where($conditionsapi);
 $db->setQuery($query);
 $result = $db->query();
@@ -197,19 +196,24 @@ $result = $db->query();
         return $this->optionsTable->value;
     }
     function getEndTitle(){
-        
+        $this->optionsTable->load('end-title');
+        return $this->optionsTable->value;
     }
     function getEndSubtitle(){
-        
+        $this->optionsTable->load('end-subtitle');
+        return $this->optionsTable->value;
     }
     function getEndButtonText(){
-        
+        $this->optionsTable->load('end-text');
+        return $this->optionsTable->value;
     }
     function getEndButtonLink(){
-        
+        $this->optionsTable->load('end-link');
+        return $this->optionsTable->value;
     }
     function getEndAssetId(){
-        
+        $this->optionsTable->load('end-asset-id');
+        return $this->optionsTable->value;
     }
     function getEndBackground(){
         $this->optionsTable->load('end-background');
@@ -220,9 +224,8 @@ $result = $db->query();
         $imagesFolder = JPATH_ROOT . '/images';
         $fullSizePath = $imagesFolder . "/".$file['name'];
         move_uploaded_file($file['tmp_name'], $fullSizePath);
-        $app = JFactory::getApplication();
-        $app->enqueueMessage(JText::_('file before save'.$fullSizePath));
-        return $fullSizePath;
+        $imagesUrl = JURI::root(true) . '/images/'.$file['name'];
+        return $imagesUrl;
 	}
 	
 } // end class

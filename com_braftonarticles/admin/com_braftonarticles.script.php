@@ -37,6 +37,9 @@ class com_braftonarticlesInstallerScript
 		$installer = new JInstaller;
 		$src = $parent->getParent()->getPath('source');
 		$installer->install($src.'/plg_braftoncron');
+        $installer_2 = new JInstaller;
+        $src_2 = $parent->getParent()->getPath('source');
+        $installer_2->install($src_2.'/plg_braftoncontent');
 	}
 
 	/**

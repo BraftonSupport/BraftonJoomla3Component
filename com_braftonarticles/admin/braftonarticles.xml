@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
 	<name>com_braftonarticles</name>
-	<creationDate>August 2012</creationDate>
-	<author>ContentLEAD</author>
-	<authorEmail>techsupport@contentlead.com</authorEmail>
+	<creationDate>September 2015</creationDate>
+	<author>Brafton</author>
+	<authorEmail>techsupport@brafton.com</authorEmail>
 	<authorUrl>http://www.contentlead.com</authorUrl>
 	<copyright>Copyright 2012</copyright>
 	<license>GPL</license>
-	<version>1.0</version>
+	<version>3.0.1</version>
 	<description>Imports articles from Brafton/ContentLEAD/Castleford XML feeds</description>
 	<scriptfile>com_braftonarticles.script.php</scriptfile>
  
@@ -23,10 +23,9 @@
 	</uninstall>
     <update>
         <schemas>
-            <schemapath type="mysql" CHARSET="UTF8">sql/mysql</schemapath>
+            <schemapath type="mysql" CHARSET="UTF8">sql/updates/mysql</schemapath>
         </schemas>
     </update>
- 
 	<files folder="site">
 		<filename>index.html</filename>
 		<filename>braftonarticles.php</filename>
@@ -37,9 +36,6 @@
  
 	<administration>
 		<menu img="../media/com_braftonarticles/images/logo-16x16.png">COM_BRAFTONARTICLES</menu>
-        <submenu>
-            <menu link="option=com_braftonarticles" view="log">Log</menu>
-        </submenu>
 		<files folder="admin">
 			<filename>index.html</filename>
 			<filename>braftonarticles.php</filename>
