@@ -38,6 +38,11 @@ class BraftonArticlesControllerCron extends JControllerLegacy
 		JLog::add('loaded articles started', JLog::INFO, 'com_braftonarticles');
 		$model = $this->getModel('articles');
 		if(!$model->loadArticles()) {
+            $app = JFactory::getApplication();
+            if($app->isAdmin()){
+                $msg = 'You have Run the importer.  Check the Log for a list of imported Items.';
+                $this->setRedirect('index.php?option=com_braftonarticles', $msg, 'message');
+            }
 			return false;
 		} else {
 			return true;
@@ -48,6 +53,10 @@ class BraftonArticlesControllerCron extends JControllerLegacy
         JLog::add('loaded videos started', JLog::INFO, 'com_braftonarticles');
         $model = $this->getModel('videos');
         if(!$model->loadVideos()) {
+            if($app->isAdmin()){
+                $msg = 'You have Run the importer.  Check the Log for a list of imported Items.';
+                $this->setRedirect('index.php?option=com_braftonarticles', $msg, 'message');
+            }
             return false;
         } else {
             return true;
