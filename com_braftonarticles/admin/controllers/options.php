@@ -32,6 +32,8 @@ class BraftonArticlesControllerOptions extends JControllerAdmin {
         $config = new JConfig();
 		$logPath = rtrim($config->log_path, '/') . '/com_braftonarticles.log.php';
         unlink($logPath);
+        $msg = 'Your Log has now been deleted';
+        $this->setRedirect('index.php?option=com_braftonarticles&view=log', $msg, 'message');
         
     }
     function download_log(){
