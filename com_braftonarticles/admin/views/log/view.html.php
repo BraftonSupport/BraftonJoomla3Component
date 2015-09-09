@@ -16,10 +16,8 @@ class BraftonArticlesViewLog extends JViewLegacy
 		$toolbar = JToolBar::getInstance();
 		JHtml::stylesheet('com_braftonarticles/css/admin/style.css', 'media/');
 		JToolBarHelper::title('Brafton Article Importer','logo');
-        JToolBarHelper::apply('options.apply');
-		JToolBarHelper::cancel('options.cancel');
 		JToolBarHelper::divider();
-		$toolbar->appendButton('Confirm', 'This will build the importing category structure from scratch! Are you sure you want to do this?', 'refresh', 'Clear Log', 'options.clear_log', false);
+		$toolbar->appendButton('Confirm', 'This will clear your error log.  Be sure you have investigated all Errors first.', 'purge', 'Clear Log', 'options.clear_log', false);
         
 		$config = new JConfig();
 		$logPath = rtrim($config->log_path, '/') . '/com_braftonarticles.log.php';

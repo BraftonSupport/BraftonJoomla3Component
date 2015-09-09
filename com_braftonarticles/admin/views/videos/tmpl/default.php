@@ -5,7 +5,7 @@ JHTML::_('behavior.tooltip');
 
 ?>
 
-<form action="index.php?option=com_braftonarticles" method="post" name="adminForm" id="adminForm" enctype="multipart/form-data">
+<form action="index.php?option=com_braftonarticles" method="post" name="adminForm" id="adminForm">
 <div id="brafton-standard-opts">
 	<h2>Settings</h2>
 	<input type="hidden" name="task" value="" />
@@ -136,58 +136,7 @@ JHTML::_('behavior.tooltip');
 <fieldset>
     <legend><h2>Video Call To Actions</h2></legend>
     <div id="brafton-video-cta">
-        <!-- template
-        <div class="setting">
-            <h3></h3>
-            <p></p>
-            <input type="text" name="" value=""/>
-        </div>
-        -->
-        <div class="setting">
-            <h3>Pause Text</h3>
-            <p></p>
-            <input type="text" name="pause-text" value="<?php echo $this->pauseText; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Pause Link</h3>
-            <p></p>
-            <input type="text" name="pause-link" value="<?php echo $this->pauseLink; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Pause Asset ID</h3>
-            <p></p>
-            <input type="text" name="pause-asset-id" value="<?php echo $this->pauseAssetId; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Ending Title</h3>
-            <p></p>
-            <input type="text" name="" value=""/>
-        </div>
-        <div class="setting">
-            <h3>Ending Subtitle</h3>
-            <p></p>
-            <input type="text" name="" value=""/>
-        </div>
-        <div class="setting">
-            <h3>Ending Button Text</h3>
-            <p></p>
-            <input type="text" name="" value=""/>
-        </div>
-        <div class="setting">
-            <h3>Ending Button Link</h3>
-            <p></p>
-            <input type="text" name="" value=""/>
-        </div>
-        <div class="setting">
-            <h3>Ending Asset ID</h3>
-            <p></p>
-            <input type="text" name="" value=""/>
-        </div>
-        <div class="setting">
-            <h3>Ending Background</h3>
-            <p></p>
-            <input type="file" name="end-background" value="<?php echo $this->endBackground; ?>"/>
-        </div>
+    
     </div>
 </fieldset>
 <fieldset>

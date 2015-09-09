@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
 	<name>com_braftonarticles</name>
-	<creationDate>August 2012</creationDate>
-	<author>ContentLEAD</author>
-	<authorEmail>techsupport@contentlead.com</authorEmail>
+	<creationDate>September 2015</creationDate>
+	<author>Brafton</author>
+	<authorEmail>techsupport@brafton.com</authorEmail>
 	<authorUrl>http://www.contentlead.com</authorUrl>
 	<copyright>Copyright 2012</copyright>
 	<license>GPL</license>

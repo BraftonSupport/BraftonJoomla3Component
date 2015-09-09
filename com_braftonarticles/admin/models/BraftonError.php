@@ -115,19 +115,19 @@ class BraftonErrorReport {
                 curl_exec($ch);
                 //variable_set('brafton_debug_mode', 1);
                 //header("LOCATION:$this->url?b_error=vital");
-                //return;
+                return;
             } else if($errorLevel == 1){
                 //variable_set('brafton_debug_mode', 1);
-                //header("LOCATION:$this->url?b_error=vital");
+                header("LOCATION:$this->url?b_error=vital");
             }else{
-               // return;
+                return;
             }
         }
         else{
-            //return;
+            return;
         }
         //exit();
-        //return;
+        return;
     }
 
     //function for checking if fatal error has occured and trigger the error flow

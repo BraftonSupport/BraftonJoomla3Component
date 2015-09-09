@@ -11,10 +11,19 @@ class BraftonArticlesModelOptions extends JModelList
 {
 	protected $optionsTable;
 	protected $authorTable;
+    protected $loadingMechanism;
 	
 	function __construct() {
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components'.'/com_braftonarticles'.'/tables');
-		$this->optionsTable = $this->getTable('braftonoptions');		
+		$this->optionsTable = $this->getTable('braftonoptions');
+        
+        $allowUrlFopenAvailable = ini_get('allow_url_fopen') == "1" || ini_get('allow_url_fopen') == "On";
+		$cUrlAvailable = function_exists('curl_version');
+        
+        if ($cUrlAvailable)
+			$this->loadingMechanism = "cURL";
+		else if ($allowUrlFopenAvailable)
+			$this->loadingMechanism = "allow_url_fopen";
 		parent::__construct();
 	}
 	
@@ -74,7 +83,21 @@ $result = $db->query();
 		$this->setdatabase($options['secret-key'], 'secret-key');
 		$this->setdatabase($options['public-key'], 'public-key');
 		$this->setdatabase($options['feed-number'], 'feed-number');
-
+        
+        //video CTA's
+        $this->setdatabase($options['pause-text'], 'pause-text');
+        $this->setdatabase($options['pause-link'], 'puase-link');
+        $this->setdatabase($options['pause-asset-id'], 'pause-asset-id');
+        $this->setdatabase($options['end-title'], 'end-title');
+        $this->setdatabase($options['end-subtitle'], 'end-subtitle');
+        $this->setdatabase($options['end-text'], 'end-text');
+        $this->setdatabase($options['end-link'], 'end-link');
+        $this->setdatabase($options['end-asset-id'], 'end-asset-id');
+        //section for uploading background image for video cta's
+        $fileUpload = $_FILES['end-background'];
+        $fileOption = $this->saveImage($fileUpload);
+        $this->setdatabase($fileOption, 'end-background');
+        
 		//import articles, videos or both
 		$this->setdatabase($options['import-assets'], 'import-assets');
         $this->setdatabase($options['stop-importer'], 'stop-importer');
@@ -161,6 +184,46 @@ $result = $db->query();
         $this->optionsTable->load('stop-importer');
 		return $this->optionsTable->value;
     }
+    function getPauseText(){
+        $this->optionsTable->load('pause-text');
+        return $this->optionsTable->value;
+    }
+    function getPauseLink(){
+        $this->optionsTable->load('pause-link');
+        return $this->optionsTable->value;
+    }
+    function getPauseAssetId(){
+        $this->optionsTable->load('pause-asset-id');
+        return $this->optionsTable->value;
+    }
+    function getEndTitle(){
+        
+    }
+    function getEndSubtitle(){
+        
+    }
+    function getEndButtonText(){
+        
+    }
+    function getEndButtonLink(){
+        
+    }
+    function getEndAssetId(){
+        
+    }
+    function getEndBackground(){
+        $this->optionsTable->load('end-background');
+        return $this->optionsTable->value;
+    }
+    protected function saveImage($file)
+	{
+        $imagesFolder = JPATH_ROOT . '/images';
+        $fullSizePath = $imagesFolder . "/".$file['name'];
+        move_uploaded_file($file['tmp_name'], $fullSizePath);
+        $app = JFactory::getApplication();
+        $app->enqueueMessage(JText::_('file before save'.$fullSizePath));
+        return $fullSizePath;
+	}
 	
 } // end class
 ?>

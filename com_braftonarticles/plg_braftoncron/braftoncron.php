@@ -223,8 +223,14 @@ function onAfterRoute()
                     $controller->execute('loadCategories');
                     if ($this->updateArticlesEnabled())
                         $controller->execute('updateArticles');
-                    $controller->execute('loadArticles');
-                    $controller->execute('loadVideos');
+                    
+                    $check = $this->checkToImport();
+                    if($check == 'both' || $check == 'articles'){
+                        $controller->execute('loadArticles');
+                    }
+                    if($check == 'both' || $check == 'videos'){
+                        $controller->execute('loadVideos');
+                    }
                 }
                 
 			}
@@ -270,7 +276,15 @@ private function updateArticlesEnabled()
         $db->setQuery($q);
         $result = $db->loadResult();
         
-        return $result == 'On';
+        return $result;
+    }
+    private function checkToImport(){
+        $db = JFactory::getDbo();
+        $q = $db->getQuery(true);
+        $q->select($q->qn('value'))->from('#__brafton_options')->where($q->qn('option').'='.$q->q('import-assets'));
+        $db->setQuery($q);
+        $result = $db->loadResult();
+        return $result;
     }
 }
 

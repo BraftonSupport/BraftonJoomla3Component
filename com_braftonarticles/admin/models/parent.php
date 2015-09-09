@@ -57,7 +57,7 @@ class BraftonArticlesModelParent extends JModelList
 		$this->options->load('base-url');
 		$API_BaseURL = $this->options->value;
 		
-		$this->feed = new piHandler($API_Key, $API_BaseURL);
+		$this->feed = new ApiHandler($API_Key, $API_BaseURL);
 
 		//load video options
 		$this->options->load('secret-key');

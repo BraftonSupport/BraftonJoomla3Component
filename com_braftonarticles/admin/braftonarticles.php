@@ -30,6 +30,7 @@ else
 	$task = $jinput->get('task');
 
 JSubMenuHelper::addEntry('Settings', 'index.php?option=com_braftonarticles', $view == 'options');
+JSubmenuHelper::addEntry('Video CTAs', 'index.php?option=com_braftonarticles&view=videos', $view == 'videos');
 JSubMenuHelper::addEntry('Log', 'index.php?option=com_braftonarticles&view=log', $view == 'log');
 
 $controller = JControllerLegacy::getInstance('BraftonArticles');

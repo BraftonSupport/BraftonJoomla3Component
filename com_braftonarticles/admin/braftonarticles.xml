@@ -33,6 +33,9 @@
  
 	<administration>
 		<menu img="../media/com_braftonarticles/images/logo-16x16.png">COM_BRAFTONARTICLES</menu>
+        <submenu>
+            <menu link="option=com_braftonarticles" view="log">Log</menu>
+        </submenu>
 		<files folder="admin">
 			<filename>index.html</filename>
 			<filename>braftonarticles.php</filename>
