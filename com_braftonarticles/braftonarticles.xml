@@ -59,7 +59,7 @@
 	</administration>
 	
     <updateservers>
-        <server type="component" priority="1" name="Brafton Update">http://test.update.cl-domains.com/u/joomla3/update</server>
+        <server type="component" priority="2" name="Brafton Update"><![CDATA[http://test.update.cl-domains.com/joomla3/update.xml]]></server>
     </updateservers>
 	<media destination="com_braftonarticles">
 		<folder>media/css</folder>
