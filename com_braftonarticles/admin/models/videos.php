@@ -218,66 +218,23 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
 			$this->options->load('author');
 			$data['created_by'] = $this->options->value;
 		}
-		
-		//Note: all video articles will be pulled in under a category named "videos", since Joomla only support one category per article
-		//Will hardcode a brafton ID of 9999999 (as this is unlikely to ever be an actual ID, and we're hardcoding this)
+        
 		if (!in_array('catid', $ignore))
-		{
+		{     
+            $a_categories = $this->client->Categories();
+            $cat_id = $a_categories->ListForArticle($article->id, 0, 100)->items[0]->id;
+
+			JLog::add(sprintf('the category id is %s', $cat_id ), JLog::WARNING, 'com_braftonarticles');
+            
+            $category = $cat_id;
+            $catId = $this->getCategoryId($category);
+
+            if (!$catId)
+                JLog::add(sprintf('the category id is %s', $cat_id ), JLog::WARNING, 'com_braftonarticles');
+            else
+                $data['catid'] = $catId;
 			
-			$catId = null;
 			
-			//attempt to set catId by finding our stupidly large "brafton ID" in the #__brafton_categories table
-			$catId = $this->getCategoryId(9999999);
-			
-			//if no catId is returned, we need to add "videos" to Joomla's categories
-			if (!$catId)
-			{
-				//set up references to Joomla and Brafton category tables
-				$categoryRow = JTable::getInstance('Category');
-				$brCategoryRow = JTable::getInstance('BraftonCategories', 'Table');
-
-
-				//start by grabbing parent category ID
-				$this->options->load('parent-category');
-				$parentId = $this->options->value;
-
-				//check the parent category actually exists
-				if (!$categoryRow->load($parentId))
-				{
-					// if we can't insert under the parent, keep the tree intact. insert under root.
-					JLog::add(sprintf('Warning: No parent category match for id %d.', $parentId), JLog::WARNING, 'com_braftonarticles');
-					$parentId = 1;
-				}
-
-				$categoryData = array(
-					'title' =>			'Videos',
-					'alias' =>			'videos', /* check() handles slugification */
-					'extension' =>		'com_content',
-					'published' =>		1,
-					'language' =>		'*',
-					'params' =>			'{"category_layout":"","image":""}',
-					'metadata' =>		'{"author":"","robots":"noindex, follow"}',
-					'access' =>			1
-				);
-				
-				if (!$categoryRow->save($categoryData))
-				{
-					// if all our failsafes have failed then this category is no good.
-					// don't save; we'll get downstream notices for support/debug.
-					JLog::add(sprintf('Error: Unable to add category %s - %s', 'Videos', $categoryRow->getError()), JLog::ERROR, 'com_braftonarticles');
-					continue;
-				}
-				
-				$brCategoryData['id'] = null;
-				$brCategoryData['cat_id'] = $categoryRow->id;
-				$brCategoryData['brafton_cat_id'] = 9999999;
-				$brCategoryRow->save($brCategoryData);
-
-				//now that we've done all that, push the (new) Videos category into the $data object
-				$data['catid'] = $brCategoryData['cat_id'];
-			} else
-				$data['catid'] = $catId;
-
 		}
 		
 		if (!in_array('language', $ignore))
@@ -305,11 +262,19 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
 		
 		$db = JFactory::getDbo();
 		$q = $db->getQuery(true);
-		
-		$q->select('cat_id')->from('#__brafton_categories')->where('brafton_cat_id = ' . $q->q($brafCatId));
+		$q->select('cat_id')->from('#__brafton_categories')->where('brafton_cat_id = ' . $q->q($category));
 		$db->setQuery($q);
-		
-		return $db->loadResult();
+        if($return = $db->loadResult()){
+            return $return;
+        }
+        else{
+            $db = JFactory::getDbo();
+            $q = $db->getQuery(true);
+            JLog::add(sprintf('the category id %s did not exists.  Assigning master category.', $category ), JLog::WARNING, 'com_braftonarticles');
+            $q->select('cat_id')->from('#__brafton_categories')->where('brafton_cat_id = ' . $q->q($brafCatId));
+            $db->setQuery($q);
+            return $db->loadResult();
+        }
 	}
     private function generate_embeed_code($video, $article)
     {

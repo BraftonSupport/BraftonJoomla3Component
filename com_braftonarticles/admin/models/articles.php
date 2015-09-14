@@ -81,15 +81,6 @@ class BraftonArticlesModelArticles extends BraftonArticlesModelParent
 		$content = $this->getTable('content');
 		$content->load($contentId, true);
 		
-		/* fields we want to leave alone (joomla 2.5):
-			- alias: affects the URL
-			- state: respect the user's preferences
-			- created: affects sort, preserve history
-			- publish_up: preserve history
-			- created_by: respect the user's preferences
-			- attribs: respect the user's preferences
-			- language: asking for trouble
-		*/
 		$ignore = array('alias', 'state', 'created', 'publish_up', 'created_by', 'language');
 		$data = $this->convertToContent($article, $contentId, $ignore);
 		

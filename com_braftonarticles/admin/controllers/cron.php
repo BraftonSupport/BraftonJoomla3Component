@@ -53,6 +53,7 @@ class BraftonArticlesControllerCron extends JControllerLegacy
         JLog::add('loaded videos started', JLog::INFO, 'com_braftonarticles');
         $model = $this->getModel('videos');
         if(!$model->loadVideos()) {
+            $app = JFactory::getApplication();
             if($app->isAdmin()){
                 $msg = 'You have Run the importer.  Check the Log for a list of imported Items.';
                 $this->setRedirect('index.php?option=com_braftonarticles', $msg, 'message');

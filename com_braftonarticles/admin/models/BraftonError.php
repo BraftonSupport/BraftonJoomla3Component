@@ -46,7 +46,7 @@ class BraftonErrorReport {
         register_shutdown_function(array($this,  'check_for_fatal'));
         set_error_handler(array($this, 'log_error') );
         set_exception_handler(array($this, 'log_exception'));
-        ini_set( "display_errors", 0 );
+        ini_set( "display_errors", 1 );
         error_reporting( E_ALL );
     }
     //Sets the current section reporting the error periodically set by the article and video loops themselves

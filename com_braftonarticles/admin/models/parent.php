@@ -17,7 +17,8 @@ class BraftonArticlesModelParent extends JModelList
 	protected $feed;
 	protected $options;
 	protected $loadingMechanism;
-
+    public   $importAssets;
+    public $feedId;
 	//video library classes
 	protected $videoClient;
 	protected $client;
@@ -27,7 +28,7 @@ class BraftonArticlesModelParent extends JModelList
 	{
 		parent::__construct();
 		$error = new BraftonErrorReport();
-        
+        $this->importAssets = 'articles';
 		JLog::addLogger(array('text_file' => 'com_braftonarticles.log.php'), JLog::ALL, 'com_braftonarticles');
         //JLog::addLogger(array('logger' => 'database', 'db_table' => '#__brafton_error'), JLog::ALL, 'com_braftonarticles');
 		
@@ -68,6 +69,7 @@ class BraftonArticlesModelParent extends JModelList
 
 		$this->options->load('feed-number');
 		$feed_number = $this->options->value;
+        
 
 		//determine appropriate base client and photo URLs
 		switch ($API_BaseURL) {
@@ -88,14 +90,18 @@ class BraftonArticlesModelParent extends JModelList
 				$photoURI = "http://pictures.brafton.com/v2/";
 				break;
 		}
-
+        
 		//Check that public and secret key are set, instantiate video classes if so
 		if( ($secret_key == '') || ($public_key == '') )
 		{
+            $this->importAssets = 'noVideos';
 			break;
 		} else {
 			$this->videoClient = new AdferoVideoClient ($baseURL, $public_key, $secret_key);
 			$this->client = new AdferoClient ($baseURL, $public_key, $secret_key);
+            $feeds = $this->client->Feeds();
+            $feedList = $feeds->ListFeeds(1,10);
+            $this->feedId = $feedList->items[$feed_number]->id;
 			$this->photoClient = new AdferoPhotoClient($photoURI);
 		}
 	}

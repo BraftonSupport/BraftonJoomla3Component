@@ -67,133 +67,7 @@ JHTML::_('behavior.tooltip');
 		</select>
 	</div>
 </div>
-
-<!-- Add video settings -->
-<div id="brafton-video-opts">
-	<legend>
-		<h2>Video Settings</h2>
-		<h4>Note: Only modify these settings if you are receiving our video product</h4>
-	</legend>
-	<div class="setting">
-		<h3>
-		<?php
-			echo JHTML::tooltip(
-				'Your Public Key.',
-				'Public Key',
-				'',
-				'Public Key');
-		?>
-		</h3>
-		<input type="text" name="public-key" value="<?php echo $this->public_key; ?>"/>
-	</div>
-	<div class="setting">
-		<h3>
-		<?php
-			echo JHTML::tooltip(
-				'Your Secret Key.',
-				'Secret Key',
-				'',
-				'Secret Key');
-		?>
-		</h3>
-		<input type="text" name="secret-key" value="<?php echo $this->secret_key; ?>"/>
-	</div>
-	<div class="setting">
-		<h3>
-		<?php
-			echo JHTML::tooltip(
-				'Your Video Feed number (typically 0).',
-				'Feed Number',
-				'',
-				'Feed Number');
-		?>
-		</h3>
-		<input type="text" name="feed-number" value="<?php echo $this->feed_number; ?>"/>
-	</div>
-	<div class="setting">
-		<h3>
-		<?php
-			echo JHTML::tooltip(
-				'Import only articles, only videos, or both.',
-				'Import Assets',
-				'',
-				'Import Assets');
-		?>
-		</h3>
-		<select name="import-assets">
-			<?php
-				$opts = array('both', 'articles', 'videos');
-				foreach ($opts as $o) : ?>
-				<option 
-					<?php if ($this->import_assets == $o) : ?>
-						selected="selected"
-					<?php endif; ?>
-				value="<?php echo $o; ?>"><?php echo $o; ?>
-			<?php endforeach; ?>
-		</select>
-	</div>
-</div>
-<fieldset>
-    <legend><h2>Video Call To Actions</h2></legend>
-    <div id="brafton-video-cta">
-        <!-- template
-        <div class="setting">
-            <h3></h3>
-            <p></p>
-            <input type="text" name="" value=""/>
-        </div>
-        -->
-        <div class="setting">
-            <h3>Pause Text</h3>
-            <p></p>
-            <input type="text" name="pause-text" value="<?php echo $this->pauseText; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Pause Link</h3>
-            <p></p>
-            <input type="text" name="pause-link" value="<?php echo $this->pauseLink; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Pause Asset ID</h3>
-            <p></p>
-            <input type="text" name="pause-asset-id" value="<?php echo $this->pauseAssetId; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Ending Title</h3>
-            <p></p>
-            <input type="text" name="end-title" value="<?php echo $this->endTitle; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Ending Subtitle</h3>
-            <p></p>
-            <input type="text" name="end-subtitle" value="<?php echo $this->endSubtitle; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Ending Button Text</h3>
-            <p></p>
-            <input type="text" name="end-text" value="<?php echo $this->endText; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Ending Button Link</h3>
-            <p></p>
-            <input type="text" name="end-link" value="<?php echo $this->endLink; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Ending Asset ID</h3>
-            <p></p>
-            <input type="text" name="end-asset-id" value="<?php echo $this->endAssetId; ?>"/>
-        </div>
-        <div class="setting">
-            <h3>Ending Background</h3>
-            <p></p>
-            <input type="file" name="end-background" value=""/>
-            <img src="<?php echo $this->endBackground; ?>" style="max-width:250px; height:auto"/>
-        </div>
-    </div>
-</fieldset>
-<fieldset>
-	<legend><h2>Advanced</h2> (<a href="javascript:void(0)" onclick="$$('div#brafton-advanced-opts').toggle();">Show/Hide</a>)</legend>
-	<div id="brafton-advanced-opts" style="display: none;">
+	<div id="brafton-advanced-opts" style="display: block;">
 		<div class="setting">
 			<h3>
 			<?php
@@ -288,7 +162,7 @@ JHTML::_('behavior.tooltip');
 		</div>
         <div class="setting">
             <h3>Importer Error</h3>
-            <p>this option stop the importer from running.  It is automatically turned on if the importer encounters a vital error during import.  That Error is reported to your Account Manager to aid in our ability to correct the issue and ensure smooth delivery.</p>
+            <p style="width:100%; max-width:600px; font-size:12px; color:red;">this option stop the importer from running.  It is automatically turned on if the importer encounters a vital error during import.  That Error is reported to your Account Manager to aid in our ability to correct the issue and ensure smooth delivery.</p>
             <select name="stop-importer">
             <?php
 					$opts = array('On', 'Off');
@@ -303,5 +177,4 @@ JHTML::_('behavior.tooltip');
             </select>
         </div>
 	</div>
-</fieldset>
 </form>

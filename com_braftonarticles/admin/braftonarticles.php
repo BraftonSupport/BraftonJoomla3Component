@@ -29,9 +29,9 @@ else
 	$view = strtolower($jinput->get('view', 'options'));
 	$task = $jinput->get('task');
 
-JSubMenuHelper::addEntry('Settings', 'index.php?option=com_braftonarticles', $view == 'options');
-JSubmenuHelper::addEntry('Video CTAs', 'index.php?option=com_braftonarticles&view=videos', $view == 'videos');
-JSubMenuHelper::addEntry('Log', 'index.php?option=com_braftonarticles&view=log', $view == 'log');
+JSubMenuHelper::addEntry('General Settings', 'index.php?option=com_braftonarticles', $view == 'options');
+JSubmenuHelper::addEntry('Video Settings', 'index.php?option=com_braftonarticles&view=options_video', $view == 'options_video');
+JSubMenuHelper::addEntry('Import Log', 'index.php?option=com_braftonarticles&view=log', $view == 'log');
 
 $controller = JControllerLegacy::getInstance('BraftonArticles');
 $controller->execute(JRequest::getCmd('task'));

@@ -309,7 +309,7 @@ class AdferoCategoriesClient {
      * @param array $fields array of fields to add to querystring
      * @return AdferoCategoryList 
      */
-    private function ListCategoriesForFeed($feedId, $offset, $limit, $properties, $fields) {
+    public function ListCategoriesForFeed($feedId, $offset, $limit, $properties, $fields) {
         $uri = $this->GetUri($feedId, "feedId", "xml", $properties, $fields, $offset, $limit);
         $uri = "http://" . $this->credentials->getPublicKey() . ":" . $this->credentials->getSecretKey() . "@" . str_replace("http://", "", $uri);
         $xmlString = AdferoHelpers::GetXMLFromUri($uri);

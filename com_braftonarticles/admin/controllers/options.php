@@ -39,6 +39,21 @@ class BraftonArticlesControllerOptions extends JControllerAdmin {
     function download_log(){
         $config = new JConfig();
 		$logPath = rtrim($config->log_path, '/') . '/com_braftonarticles.log.php';
+        copy($logPath, rtrim($config->log_path, '/') . '/com_braftonarticles.log.txt');    
+        $txt = fopen(rtrim($config->log_path, '/') . '/com_braftonarticles.log.txt', 'r');
+        $txt_content = fread($txt, filesize(rtrim($config->log_path, '/') . '/com_braftonarticles.log.txt'));
+        header("Content-type: text/plain");
+        header("Content-Disposition: attachment; filename=Brafton_Errors_".date('Y-M-d-(h.m.s)')."-".$_SERVER['HTTP_HOST'].".txt");
+        echo '<pre>';
+        var_dump($txt_content);
+        echo '</pre>';
+        exit();
         
+    }
+    function sync_categories(){
+        $model = $this->getModel('categories');
+        $model->getCategories();
+        $msg = 'You have successfully imported your categories';
+        $this->setRedirect('index.php?option=com_braftonarticles', $msg);
     }
 }

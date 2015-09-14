@@ -4,10 +4,10 @@
 	<creationDate>September 2015</creationDate>
 	<author>Brafton</author>
 	<authorEmail>techsupport@brafton.com</authorEmail>
-	<authorUrl>http://www.contentlead.com</authorUrl>
-	<copyright>Copyright 2012</copyright>
+	<authorUrl>http://www.brafton.com</authorUrl>
+	<copyright>Copyright 2015</copyright>
 	<license>GPL</license>
-	<version>3.0.2</version>
+	<version>3.0.3</version>
 	<description>Imports articles from Brafton/ContentLEAD/Castleford XML feeds</description>
 	<scriptfile>com_braftonarticles.script.php</scriptfile>
  
@@ -58,9 +58,12 @@
 		</languages>
 	</administration>
 	
+    <updateservers>
+        <server type="component" priority="1" name="Brafton Update">http://test.update.cl-domains.com/u/joomla3/update</server>
+    </updateservers>
 	<media destination="com_braftonarticles">
-		<folder>css</folder>
-		<folder>images</folder>
-        <folder>js</folder>
+		<folder>media/css</folder>
+		<folder>media/images</folder>
+        <folder>media/js</folder>
 	</media>
 </extension>

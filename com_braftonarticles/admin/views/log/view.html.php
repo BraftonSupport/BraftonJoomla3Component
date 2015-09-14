@@ -18,7 +18,7 @@ class BraftonArticlesViewLog extends JViewLegacy
 		JToolBarHelper::title('Brafton Article Importer','logo');
 		JToolBarHelper::divider();
 		$toolbar->appendButton('Confirm', 'This will clear your error log.  Be sure you have investigated all Errors first.', 'purge', 'Clear Log', 'options.clear_log', false);
-        
+        $toolbar->appendButton('Confirm', 'Download Importer Log', 'refresh', 'Download Log', 'options.download_log', false);
 		$config = new JConfig();
 		$logPath = rtrim($config->log_path, '/') . '/com_braftonarticles.log.php';
 		if (JFile::exists($logPath))
