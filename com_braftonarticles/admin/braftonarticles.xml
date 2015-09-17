@@ -35,7 +35,7 @@
 	</files>
  
 	<administration>
-		<menu img="../media/com_braftonarticles/images/media/logo-16x16.png">COM_BRAFTONARTICLES</menu>
+		<menu img="../media/com_braftonarticles/media/images/logo-16x16.png">COM_BRAFTONARTICLES</menu>
         <submenu>
             <menu link="option=com_braftonarticles" view="" alt="">COM_BRAFTONARTICLES</menu>
             <menu link="option=com_braftonarticles&amp;view=videos" view="" alt="">COM_BRAFTONARTICLES_VIDEO</menu>
@@ -60,7 +60,7 @@
 	</administration>
 	
     <updateservers>
-        <server type="component" priority="2" name="Brafton Update"><![CDATA[http://test.update.cl-domains.com/joomla3/update.xml]]></server>
+        <server type="component" priority="2" name="Brafton Update"><![CDATA[http://test.update.cl-domains.com/u/joomla3/update/]]></server>
     </updateservers>
 	<media destination="com_braftonarticles">
 		<folder>media/css</folder>
