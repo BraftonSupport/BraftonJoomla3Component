@@ -26,9 +26,9 @@ class BraftonArticlesViewOptions_Video extends JViewLegacy
 	function display($tpl = null)
 	{
 		$toolbar = JToolBar::getInstance();
-		JHtml::stylesheet('com_braftonarticles/css/admin/style.css', array('media/'), true);
+		JHtml::stylesheet('com_braftonarticles/media/css/admin/style.css', array('media/'), true);
 		$document = JFactory::getDocument();
-        $document->addstylesheet(JUri::root(true).'/media/com_braftonarticles/css/admin/style.css');
+        $document->addstylesheet(JUri::root(true).'/media/com_braftonarticles/media/css/admin/style.css');
 		JToolBarHelper::title('Brafton Article Importer','logo');
 		JToolBarHelper::apply('videos.apply');
 		JToolBarHelper::cancel('videos.cancel');
