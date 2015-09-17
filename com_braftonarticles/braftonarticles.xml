@@ -35,7 +35,7 @@
 	</files>
  
 	<administration>
-		<menu img="../media/com_braftonarticles/images/logo-16x16.png">COM_BRAFTONARTICLES</menu>
+		<menu img="../media/com_braftonarticles/images/media/logo-16x16.png">COM_BRAFTONARTICLES</menu>
         <submenu>
             <menu link="option=com_braftonarticles&amp;view=videos" view="" alt="">COM_BRAFTONARTICLES_VIDEO</menu>
             <menu link="option=com_braftonarticles&amp;view=log" view="log" alt="">COM_BRAFTONARTICLES_LOG</menu>
