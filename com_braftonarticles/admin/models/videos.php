@@ -305,6 +305,9 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
             $this->options->load('pause-asset-id');
             $pauseAsset = $this->options->value;
             $marpro = '';
+            if($pauseAsset != '' || $pauseAsset != NULL){
+                $marpro = "assetGateway: { id: '$pauseAsset' },";
+            }
             $this->options->load('end-title');
             $endTitle = $this->options->value;
             $this->options->load('end-subtitle');
@@ -315,9 +318,16 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
             $endButtonLink = $this->options->value;
             $this->options->load('end-asset-id');
             $endAsset = $this->options->value;
+            $endMarpro = '';
+            if($endAsset != '' || $endAsset != NULL){
+                $endMarpro = "assetGateway: { id: '$endAsset' },";
+            }
             $this->options->load('end-background');
             $endBackground = $this->options->value;
             $videoBackground = '';
+            if($endBackground != '' || $endBackground != NULL){
+                $videoBackground = "background: '$endBackground',";
+            }
             $cta = <<<CTA
                     ,
                     pauseCallToAction: {
@@ -327,6 +337,7 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
                     },
                     endOfVideoOptions: {
                         $videoBackground
+                        $endMarpro
                         callToAction: {
                             title: "$endTitle",
                             subtitle: "$endSubtitle",
