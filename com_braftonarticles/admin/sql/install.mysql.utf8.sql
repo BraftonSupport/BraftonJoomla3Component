@@ -20,4 +20,4 @@ CREATE TABLE IF NOT EXISTS `#__brafton_options` (
    PRIMARY KEY  (`option`)
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT IGNORE INTO  `#__brafton_options` (`option`,`value`) VALUES ('api-key',  ''), ('base-url',  ''), ('author', ''), ('import-order', ''), ('published-state', ''), ('update-articles', ''), ('parent-category', 1), ('secret-key', ''), ('public-key', ''), ('feed-number', 0), ('import-assets', ''), ('stop-importer', 'Off'), ('pause-text', ''), ('pause-link', ''), ('pause-asset-id', ''), ('end-title', ''), ('end-subtitle', ''), ('end-text', ''), ('end-link', ''), ('end-asset-id'), ('end-background', ''), ('debug', 'off');
+INSERT IGNORE INTO  `#__brafton_options` (`option`,`value`) VALUES ('api-key',  ''), ('base-url',  ''), ('author', ''), ('import-order', ''), ('published-state', ''), ('update-articles', ''), ('parent-category', 1), ('secret-key', ''), ('public-key', ''), ('feed-number', 0), ('import-assets', ''), ('stop-importer', 'Off'), ('pause-text', ''), ('pause-link', ''), ('pause-asset-id', ''), ('end-title', ''), ('end-subtitle', ''), ('end-text', ''), ('end-link', ''), ('end-asset-id', ''), ('end-background', ''), ('debug', 'off');
