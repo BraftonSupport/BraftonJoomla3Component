@@ -66,6 +66,28 @@ JHTML::_('behavior.tooltip');
 			<?php endforeach; ?>
 		</select>
 	</div>
+    <div class="setting">
+			<h3>
+			<?php
+				echo JHTML::tooltip(
+					'Assets to Import.',
+					'Import Content',
+					'',
+					'PImport Content');
+			?>
+			</h3>
+			<select name="import-assets">
+			<?php
+				$opts = array('articles', 'videos', 'both');
+				foreach ($opts as $o) : ?>
+				<option 
+					<?php if ($this->import_assets == $o) : ?>
+						selected="selected"
+					<?php endif; ?>
+				value="<?php echo $o; ?>"><?php echo $o; ?>
+			<?php endforeach; ?>
+		</select>
+		</div>
 </div>
 	<div id="brafton-advanced-opts" style="display: block;">
 		<div class="setting">
@@ -160,7 +182,7 @@ JHTML::_('behavior.tooltip');
 				<?php endforeach; ?>
 			</select>
 		</div>
-        <div class="settings">
+        <div class="setting">
             <h3>Debug Mode</h3>
             <p style="width:100%; max-width:600px; font-size:12px; color:red;">Turning this option 'on' will log all errors during importer operation to provide more debugging information.  Only turn this option on if your importer has encountered errors previously.</p>
             <select name="debug">
