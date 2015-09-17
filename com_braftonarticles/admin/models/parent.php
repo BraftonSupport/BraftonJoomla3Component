@@ -51,13 +51,19 @@ class BraftonArticlesModelParent extends JModelList
 		$this->options = $this->getTable('braftonoptions');
 
 		JLog::add('load parent.', JLog::INFO, 'com_braftonarticles');
-		
+
 		$this->options->load('api-key');
 		$API_Key = $this->options->value;
-		
+		$error->set_api($API_Key);
+        
 		$this->options->load('base-url');
 		$API_BaseURL = $this->options->value;
-		
+		$error->set_brand($API_BaseURL);
+        
+        $this->options->load('debug');
+        $debug = $this->options->value;
+        $error->set_debug($debug);
+        
 		$this->feed = new ApiHandler($API_Key, $API_BaseURL);
 
 		//load video options

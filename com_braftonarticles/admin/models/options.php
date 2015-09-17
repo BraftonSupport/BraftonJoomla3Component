@@ -104,6 +104,7 @@ $result = $db->query();
 		//import articles, videos or both
 		$this->setdatabase($options['import-assets'], 'import-assets');
         $this->setdatabase($options['stop-importer'], 'stop-importer');
+        $this->setdatabase($opptions['debug'], 'debug');
 		 
 		JFactory::getApplication()->enqueueMessage('Your options have successfully been saved.  Please note that your articles will not import until you have activated the <a href="index.php?option=com_plugins">bundled cron plugin</a>.');
 	}
@@ -186,6 +187,10 @@ $result = $db->query();
     function getStopImporter(){
         $this->optionsTable->load('stop-importer');
 		return $this->optionsTable->value;
+    }
+    function getDebug(){
+        $this->optionsTable->load('debug');
+        return $this->optionsTable->value;
     }
     function getPauseText(){
         $this->optionsTable->load('pause-text');

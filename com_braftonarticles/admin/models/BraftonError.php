@@ -31,14 +31,11 @@ class BraftonErrorReport {
     
     private $domain;
     //Construct our error reporting functions
-    public function __construct($api = '45b8688e-c6bd-4335-8633-0cbf497b71af', $brand = 'http://api.brafton.com', $debug = false){
+    public function __construct(){
         JLog::addLogger(array('text_file' => 'com_braftonarticles.log.php'), JLog::ALL, 'com_braftonarticles');
-        $this->debug = $debug;
         $this->url = $_SERVER['REQUEST_URI'];
         //$this->domain = $_SERVER['HTTP_HOST'];
         $this->domain = 'mydomain.com';
-        $this->api = $api;
-        $this->brand = $brand;
         $this->e_key = 'ziqh37w8e21aegb4h72ezo2p';
         $this->post_url = 'http://test.updater.cl-subdomains.com/errorlog/joomla3/error/'.$this->e_key;
         $this->level = 1;
@@ -46,8 +43,17 @@ class BraftonErrorReport {
         register_shutdown_function(array($this,  'check_for_fatal'));
         set_error_handler(array($this, 'log_error') );
         set_exception_handler(array($this, 'log_exception'));
-        ini_set( "display_errors", 1 );
+        ini_set( "display_errors", 0 );
         error_reporting( E_ALL );
+    }
+    public function set_api($api){
+        $this->api = $api;
+    }
+    public function set_brand($brand){
+        $this->brand = $brand;
+    }
+    public function set_debug($debug){
+        $this->debug = $debug;
     }
     //Sets the current section reporting the error periodically set by the article and video loops themselves
     public function set_section($sec){

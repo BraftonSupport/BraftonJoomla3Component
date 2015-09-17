@@ -25,6 +25,7 @@ class BraftonArticlesViewOptions extends JViewLegacy
 	protected $import_assets;
     
     protected $stopImporter;
+    protected $debug;
     
     protected $pauseText;
     protected $pauseLink;
@@ -76,6 +77,7 @@ class BraftonArticlesViewOptions extends JViewLegacy
             $app = JFactory::getApplication();        
             $app->enqueueMessage(JText::_('There was a vital failure when running your importer.  Please check the Log for errors.  Once you have solved the issue Turn Importer Error to Off under Advanced Options'), 'error');
         }
+        $this->debug = $this->get('Debug');
 		parent::display($tpl);
 	}
 	

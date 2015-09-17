@@ -160,6 +160,11 @@ JHTML::_('behavior.tooltip');
 				<?php endforeach; ?>
 			</select>
 		</div>
+        <div class="settings">
+            <h3>Debug Mode</h3>
+            <p style="width:100%; max-width:600px; font-size:12px; color:red;">Turning this option 'on' will log all errors during importer operation to provide more debugging information.  Only turn this option on if your importer has encountered errors previously.</p>
+            <input type="number" name="debug" value="<?php echo $this->debug; ?>">
+        </div>
         <div class="setting">
             <h3>Importer Error</h3>
             <p style="width:100%; max-width:600px; font-size:12px; color:red;">this option stop the importer from running.  It is automatically turned on if the importer encounters a vital error during import.  That Error is reported to your Account Manager to aid in our ability to correct the issue and ensure smooth delivery.</p>
