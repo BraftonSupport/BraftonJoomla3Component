@@ -53,6 +53,17 @@ class BraftonErrorReport {
         $this->brand = $brand;
     }
     public function set_debug($debug){
+        switch($debug){
+            case 'On':
+            $debug = true;
+            break;
+            case 'Off':
+            $debug = false;
+            break;
+            default:
+            $debug = false;
+            break;
+        }
         $this->debug = $debug;
     }
     //Sets the current section reporting the error periodically set by the article and video loops themselves

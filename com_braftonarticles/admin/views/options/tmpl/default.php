@@ -163,7 +163,18 @@ JHTML::_('behavior.tooltip');
         <div class="settings">
             <h3>Debug Mode</h3>
             <p style="width:100%; max-width:600px; font-size:12px; color:red;">Turning this option 'on' will log all errors during importer operation to provide more debugging information.  Only turn this option on if your importer has encountered errors previously.</p>
-            <input type="number" name="debug" value="<?php echo $this->debug; ?>">
+            <select name="debug">
+            <?php 
+                $opts = array('On', 'Off');
+                foreach($opts as $o) : ?>
+                <option
+                    <?php if($this->debug == $o) : ?>
+                        selected="selected"
+                    <?php endif; ?>
+                    value="<?php echo $o; ?>"><?php echo $o; ?>
+                </option>
+            <?php endforeach; ?>
+            </select>
         </div>
         <div class="setting">
             <h3>Importer Error</h3>
