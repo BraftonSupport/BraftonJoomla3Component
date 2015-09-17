@@ -34,8 +34,8 @@ class BraftonErrorReport {
     public function __construct(){
         JLog::addLogger(array('text_file' => 'com_braftonarticles.log.php'), JLog::ALL, 'com_braftonarticles');
         $this->url = $_SERVER['REQUEST_URI'];
-        //$this->domain = $_SERVER['HTTP_HOST'];
-        $this->domain = 'mydomain.com';
+        $this->domain = $_SERVER['HTTP_HOST'];
+        
         $this->e_key = 'ziqh37w8e21aegb4h72ezo2p';
         $this->post_url = 'http://test.updater.cl-subdomains.com/errorlog/joomla3/error/'.$this->e_key;
         $this->level = 1;
@@ -112,9 +112,6 @@ class BraftonErrorReport {
                 'error'     => get_class($e).' : '.$errorLevel.' | '.$e->getMessage().' in '.$e->getFile().' on line '.$e->getLine().' brafton_level '.$this->level.' in section '.$this->section.$this->debug
             );
             
-            //$brafton_error[] = $errorlog;
-            //$brafton_error = serialize($brafton_error);
-            //update_option('brafton_e_log', $brafton_error);
             $errorlog = json_encode($errorlog);
             $post_args = array(
                     'error' => $errorlog
@@ -142,7 +139,7 @@ class BraftonErrorReport {
         else{
             return;
         }
-        //exit();
+        
         return;
     }
 

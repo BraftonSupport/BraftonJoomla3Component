@@ -158,15 +158,7 @@ JLog::add('category names in getCategories function :'.trim($category->getName()
                 $categoryRow->metadata = '{"author":"","robots":"noindex, follow"}';
                 $categoryRow->access = 1;
                 $categoryRow->store();
-                /*
-				if (!$categoryRow->save($categoryData))
-				{
-					// if all our failsafes have failed then this category is no good.
-					// don't save; we'll get downstream notices for support/debug.
-					JLog::add(sprintf('Error: Unable to add category %s - %s', $category->getName(), $categoryRow->getError()), JLog::ERROR, 'com_braftonarticles');
-					continue;
-				}
-				*/
+                
                 JLog::add(sprintf('parent from database table  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
                 $oldParent = $categoryRow->set('parent_id', $parentId);
                 $oldLevel = $categoryRow->set('level', 2);

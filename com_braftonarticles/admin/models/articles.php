@@ -114,7 +114,6 @@ class BraftonArticlesModelArticles extends BraftonArticlesModelParent
 		{
 			$photo = $photos[0];
 			$imagesFolder = JPATH_ROOT . '/images';
-			//$imagesUrl = JURI::base(true) . '/images';
             $imagesUrl = JURI::root(true). '/images';
 			$filename = preg_replace(array('/[^a-zA-Z0-9]+/', '/^-+/', '/-+$/'), array('-', '', ''), strtolower($article->getHeadline()));
 			
