@@ -73,7 +73,7 @@ JHTML::_('behavior.tooltip');
 					'Assets to Import.',
 					'Import Content',
 					'',
-					'PImport Content');
+					'Import Content');
 			?>
 			</h3>
 			<select name="import-assets">
