@@ -83,7 +83,7 @@ $result = $db->query();
         $this->setdatabase($options['stop-importer'], 'stop-importer');
         $this->setdatabase($options['debug'], 'debug');
 		 
-		JFactory::getApplication()->enqueueMessage('Your options have successfully been saved.  Please note that your articles will not import until you have activated the <a href="index.php?option=com_plugins">bundled cron plugin</a>.');
+		JFactory::getApplication()->enqueueMessage('Your options have successfully been saved.  Please note that your articles will not import until you have activated the <a href="index.php?option=com_plugins">Brafton Cron and Brafton Content Plugins</a>.');
 	}
 
 

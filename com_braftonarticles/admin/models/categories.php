@@ -84,7 +84,7 @@ JLog::add('category names in getCategories function :'.trim($category->getName()
 				//try saving as objects instead
                 
                 $categoryRow->title = trim($category->getName());
-                $categoryRow->alias = strtolower(trim($category->getName()));
+                $categoryRow->alias = str_replace(' ','-',strtolower(trim($category->getName())));
                 $categoryRow->extension = 'com_content';
                 $categoryRow->published = 1;
                 $categoryRow->language = '*';
@@ -94,9 +94,8 @@ JLog::add('category names in getCategories function :'.trim($category->getName()
 
                 $categoryRow->store();
                 JLog::add(sprintf('parent from database table  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
-                $oldParent = $categoryRow->set('parent_id', 15);
+                $oldParent = $categoryRow->set('parent_id', $parentId);
                 $oldLevel = $categoryRow->set('level', 2);
-                //$oldPath = $categoryRow->set('path', 'video/'.$categoryRow->alias);
                 JLog::add(sprintf('parent from database table after reseting %d.', $oldParent), JLog::WARNING, 'com_braftonarticles');
                 $categoryRow->store();
                 JLog::add(sprintf('parent from database table after saving the reset  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
@@ -150,7 +149,7 @@ JLog::add('category names in getCategories function :'.trim($category->getName()
 				//try saving as objects instead
                 
                 $categoryRow->title = trim($category[1]);
-                $categoryRow->alias = strtolower(trim($category[1]));
+                $categoryRow->alias = str_replace(' ','-',strtolower(trim($category[1])));
                 $categoryRow->extension = 'com_content';
                 $categoryRow->published = 1;
                 $categoryRow->language = '*';

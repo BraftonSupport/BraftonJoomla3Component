@@ -101,7 +101,6 @@ class BraftonArticlesModelParent extends JModelList
 		if( ($secret_key == '') || ($public_key == '') )
 		{
             $this->importAssets = 'noVideos';
-			break;
 		} else {
 			$this->videoClient = new AdferoVideoClient ($baseURL, $public_key, $secret_key);
 			$this->client = new AdferoClient ($baseURL, $public_key, $secret_key);
