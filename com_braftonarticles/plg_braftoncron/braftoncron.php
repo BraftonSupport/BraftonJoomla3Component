@@ -51,6 +51,7 @@ function onBeforeRender()
 	foreach ($og as $property => $tag)
 		if ($tag != null)
 			$doc->addCustomTag($tag);
+    
     $db = JFactory::getDbo();
     $q = $db->getQuery(true);
     $q->select($q->qn('value'))->from('#__brafton_options')->where($q->qn('option') . ' = ' . $q->q('import-assets'));
@@ -60,6 +61,7 @@ function onBeforeRender()
         $doc->addStylesheet('//atlantisjs.brafton.com/v1/atlantisjsv1.3.css');
         $doc->addScript('//atlantisjs.brafton.com/v1/atlantis.min.v1.3.js');
     }
+    
 }
 
 private function appendPrefixAttribute($tag, $content)
@@ -279,7 +281,7 @@ private function updateArticlesEnabled()
 	$db->setQuery($q);
 	$result = $db->loadResult();
 
-	return $result == 'On';`
+	return $result == 'On';
 }
     private function importStop(){
         $db = JFactory::getDbo();
