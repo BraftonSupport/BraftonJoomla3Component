@@ -326,7 +326,7 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
             $endBackground = $this->options->value;
             $videoBackground = '';
             if($endBackground != '' || $endBackground != NULL){
-                $videoBackground = "background: '$endBackground',";
+                $videoBackground = "background: '\'$endBackground\'',";
             }
             $cta = <<<CTA
                     ,
