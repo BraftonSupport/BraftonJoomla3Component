@@ -271,7 +271,7 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
             $db = JFactory::getDbo();
             $q = $db->getQuery(true);
             JLog::add(sprintf('the category id %s did not exists.  Assigning master category.', $category ), JLog::WARNING, 'com_braftonarticles');
-            $q->select('cat_id')->from('#__brafton_categories')->where('brafton_cat_id = ' . $q->q($brafCatId));
+            $q->select('value')->from('#__brafton_options')->where('option = ' . $q->q('parent-category'));
             $db->setQuery($q);
             return $db->loadResult();
         }
