@@ -57,7 +57,7 @@ $result = $db->query();
 	function setOptions() {
 
 		$options = JRequest::get('post');
-		
+		$debug = false;
 
 
 		//video related settings
@@ -79,7 +79,9 @@ $result = $db->query();
         if($_FILES['end-background']['name'] != ''){
             $fileUpload = $_FILES['end-background'];
             $fileOption = $this->saveImage($fileUpload);
-            JFactory::getApplication()->enqueueMessage(sprintf('the fileoption is %s', $fileOption));
+            if($debug == true){
+                JFactory::getApplication()->enqueueMessage(sprintf('the fileoption is %s', $fileOption));
+            }
             $this->setdatabase($fileOption, 'end-background');
         }
 
