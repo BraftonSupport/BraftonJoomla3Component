@@ -268,12 +268,14 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
             return $return;
         }
         else{
-            $db = JFactory::getDbo();
-            $q = $db->getQuery(true);
+            //$db = JFactory::getDbo();
+            //$q = $db->getQuery(true);
             JLog::add(sprintf('the category id %s did not exists.  Assigning master category.', $category ), JLog::WARNING, 'com_braftonarticles');
-            $q->select('value')->from('#__brafton_options')->where('option = ' . $q->quote('parent-category'));
-            $db->setQuery($q);
-            return $db->loadResult();
+            //$q->select('value')->from('#__brafton_options')->where('option = ' . $q->quote('parent-category'));
+            //$db->setQuery($q);
+            //return $db->loadResult();
+            $this->options->load('parent-category');
+            return $this->options->value;
         }
 	}
     private function generate_embeed_code($video, $article)
