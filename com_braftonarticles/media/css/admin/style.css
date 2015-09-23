@@ -82,23 +82,33 @@ div > .setting:last-child {
 	border-bottom: 0;
 	margin-bottom: 0;
 }
-div.setting p:before{
+div.setting.note{
+    position:relative;
+}
+div.setting.note h3{
+    display:inline-block;
+}
+div.setting.note select{
+    display:block;
+}
+div.setting.note h3:after{
     width: 15px;
     height: 15px;
     content: '!';
     border: 1px solid red;
-    display: block;
+    display: inline-block;
     text-align: center;
     line-height: 15px;
     border-radius: 15px;
     font-weight: 900;
     position: relative;
-    top: -25px;
-    left: -25px;
+    left:5px;
+    cursor:pointer;
 }
-div.setting p span{
+
+div.setting p{
     display:none;
 }
-div.setting p::before:hover span{
-    display:inline-block;
+div.setting.note h3:hover + p{
+    display:block;
 }
