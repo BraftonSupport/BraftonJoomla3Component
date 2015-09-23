@@ -82,3 +82,11 @@ div > .setting:last-child {
 	border-bottom: 0;
 	margin-bottom: 0;
 }
+div.setting p{
+    width:25px;
+    height:25px;
+    content:'a';
+}
+div.setting p:hover span{
+    display:inline-block;
+}
