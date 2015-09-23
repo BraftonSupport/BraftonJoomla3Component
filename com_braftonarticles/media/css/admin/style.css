@@ -99,6 +99,6 @@ div.setting p:before{
 div.setting p span{
     display:none;
 }
-div.setting p:hover:before span{
+div.setting p:before:hover span{
     display:inline-block;
 }
