@@ -51,7 +51,9 @@ class BraftonArticlesModelParent extends JModelList
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components'.'/com_braftonarticles'.'/tables');
 		$this->options = $this->getTable('braftonoptions');
 
-		JLog::add('load parent.', JLog::INFO, 'com_braftonarticles');
+        if($this->debug){
+            JLog::add('load parent.', JLog::INFO, 'com_braftonarticles');
+        }
 
 		$this->options->load('api-key');
 		$API_Key = $this->options->value;

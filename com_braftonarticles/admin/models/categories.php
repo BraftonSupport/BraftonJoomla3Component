@@ -58,8 +58,10 @@ class BraftonArticlesModelCategories extends BraftonArticlesModelParent
 		{
 			$categoryRow = JTable::getInstance('Category');
 			$brCategoryRow = JTable::getInstance('BraftonCategories', 'Table');
-JLog::add('category names in getCategories function :'.trim($category->getName()), JLog::INFO, 'com_braftonarticles');
-
+            if($this->debug){
+                JLog::add('category names in getCategories function :'.trim($category->getName()), JLog::INFO, 'com_braftonarticles');
+            }
+                
 			//check to see if category already exists
 			if (!$this->category_exists($category, $brCategoryRow))
 			{
