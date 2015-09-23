@@ -19,6 +19,7 @@ class BraftonArticlesModelParent extends JModelList
 	protected $loadingMechanism;
     public   $importAssets;
     public $feedId;
+    private $debug;
 	//video library classes
 	protected $videoClient;
 	protected $client;
@@ -61,9 +62,19 @@ class BraftonArticlesModelParent extends JModelList
 		$error->set_brand($API_BaseURL);
         
         $this->options->load('debug');
-        $debug = $this->options->value;
-        $error->set_debug($debug);
-        
+        $this->debug = $this->options->value;
+        $error->set_debug($this->debug);
+        switch($this->debug){
+            case 'On':
+            $this->debug = true;
+            break;
+            case 'Off':
+            $this->debug = false;
+            break;
+            default:
+            $this->debug = false;
+            break;
+        }
 		$this->feed = new ApiHandler($API_Key, $API_BaseURL);
 
 		//load video options

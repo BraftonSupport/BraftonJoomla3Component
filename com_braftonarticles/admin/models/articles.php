@@ -57,7 +57,9 @@ class BraftonArticlesModelArticles extends BraftonArticlesModelParent
 	
 	private function loadArticle($article)
 	{
-		JLog::add(sprintf('Loading article "%s" (%d).', trim($article->getHeadline()), $article->getId()), JLog::DEBUG, 'com_braftonarticles');
+        if($this->debug){
+		  JLog::add(sprintf('Loading article "%s" (%d).', trim($article->getHeadline()), $article->getId()), JLog::DEBUG, 'com_braftonarticles');
+        }
 		
 		$content = $this->getTable('content');
 		$data = $this->convertToContent($article);
@@ -76,7 +78,9 @@ class BraftonArticlesModelArticles extends BraftonArticlesModelParent
 	
 	private function updateArticle($contentId, $article)
 	{
-		JLog::add(sprintf('Updating article "%s" (%d).', trim($article->getHeadline()), $article->getId()), JLog::DEBUG, 'com_braftonarticles');
+        if($this->debug){
+		  JLog::add(sprintf('Updating article "%s" (%d).', trim($article->getHeadline()), $article->getId()), JLog::DEBUG, 'com_braftonarticles');
+        }
 		
 		$content = $this->getTable('content');
 		$content->load($contentId, true);
@@ -134,8 +138,9 @@ class BraftonArticlesModelArticles extends BraftonArticlesModelParent
 					$imageMarkup = sprintf('<div class="figure figure-full-size"><img src="%s" alt="%s" title="%s" class="article-image" /><p class="caption">%s</p></div>', $fullSizeUrl, $photo->getAlt(), $photo->getAlt(), $photo->getAlt());
 					$fullText = $imageMarkup . $fullText;
 				}
-				else
+                else{
 					JLog::add(sprintf('Notice: Failed to save image %s (attached to article %s (%d)).', $fullSizePhoto->getURL(), trim($article->getHeadline()), $article->getId()), JLog::NOTICE, 'com_braftonarticles');
+                }
 			}
 			
 			if ($photo->getThumb()->getURL() != "NULL")
@@ -150,8 +155,9 @@ class BraftonArticlesModelArticles extends BraftonArticlesModelParent
 					$imageMarkup = sprintf('<div class="figure figure-thumbnail"><img src="%s" alt="%s" title="%s" class="article-thumbnail" /></div>', $thumbUrl, $photo->getAlt(), $photo->getAlt(), $photo->getAlt());
 					$introText = $imageMarkup . $introText;
 				}
-				else
+                else{
 					JLog::add(sprintf('Notice: Failed to save image %s (attached to article %s (%d)).', $thumbPhoto->getURL(), trim($article->getHeadline()), $article->getId()), JLog::NOTICE, 'com_braftonarticles');
+                }
 			}
 			// fallback to using full size if no thumbnail on feed
 			else if ($fullSizeSaved)
@@ -206,10 +212,10 @@ class BraftonArticlesModelArticles extends BraftonArticlesModelParent
 			$categories = $article->getCategories();
 			$catId = null;
 			
-			if (empty($categories))
+            if (empty($categories)){
 				JLog::add(sprintf('Notice: Article "%s" (%d) has no assigned categories.', trim($article->getHeadline()), $article->getId()), JLog::NOTICE, 'com_braftonarticles');
-			else
-			{
+            }
+            else{
 				$category = $categories[0];
 				$catId = $this->getCategoryId($category);
 				

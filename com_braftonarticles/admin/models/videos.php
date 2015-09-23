@@ -34,8 +34,9 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
 	{
 		//assign the XML data specific to this article to $thisArticle, for handling
 		$thisArticle = $this->client->Articles()->Get( $article->id );
-
-		JLog::add(sprintf('Loading article "%s" (%d).', trim($thisArticle->fields['title']), $article->id), JLog::DEBUG, 'com_braftonarticles');
+        if($this->debug){
+		  JLog::add(sprintf('Loading article "%s" (%d).', trim($thisArticle->fields['title']), $article->id), JLog::DEBUG, 'com_braftonarticles');
+        }
 		
 		$content = $this->getTable('content');
 		$data = $this->convertToContent($article);
@@ -223,8 +224,9 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
 		{     
             $a_categories = $this->client->Categories();
             $cat_id = $a_categories->ListForArticle($article->id, 0, 100)->items[0]->id;
-
-			JLog::add(sprintf('the category id is %s', $cat_id ), JLog::WARNING, 'com_braftonarticles');
+            if($this->debug){
+			 JLog::add(sprintf('the category id is %s', $cat_id ), JLog::WARNING, 'com_braftonarticles');
+            }
             
             $category = $cat_id;
             $catId = $this->getCategoryId($category);
