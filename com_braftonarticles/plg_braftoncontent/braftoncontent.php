@@ -28,15 +28,13 @@ class plgContentBraftoncontent extends JPlugin
     }
     
     public function onContentPrepareForm($form, $data){
+        /*
         $app = JFactory::getApplication();
-        
         $delId = 'prepare';
         $app->enqueueMessage(JText::_(JURI::root(true)));
-        //unlink(JURI::root(true).'/log/com_braftonarticles.log.php');
+        */
         return true;
     }
-
-
 
 }
 

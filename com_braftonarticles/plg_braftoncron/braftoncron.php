@@ -51,8 +51,17 @@ function onBeforeRender()
 	foreach ($og as $property => $tag)
 		if ($tag != null)
 			$doc->addCustomTag($tag);
-    $doc->addStylesheet('//atlantisjs.brafton.com/v1/atlantisjsv1.3.css');
-    $doc->addScript('//atlantisjs.brafton.com/v1/atlantis.min.v1.3.js');
+    
+    $db = JFactory::getDbo();
+    $q = $db->getQuery(true);
+    $q->select($q->qn('value'))->from('#__brafton_options')->where($q->qn('option') . ' = ' . $q->q('import-assets'));
+    $db->setQuery($q);
+    $result = $db->loadResult();
+    if($result == 'both' || $result == 'videos'){
+        $doc->addStylesheet('//atlantisjs.brafton.com/v1/atlantisjsv1.3.css');
+        $doc->addScript('//atlantisjs.brafton.com/v1/atlantis.min.v1.3.js');
+    }
+    
 }
 
 private function appendPrefixAttribute($tag, $content)
@@ -206,7 +215,7 @@ function onAfterRoute()
 			foreach ($needed as $n)
 				if (!class_exists($n))
 					$missing []= $n;
-
+            
 			if (!empty($missing))
 			{
 				JLog::add(sprintf('Cannot trigger importer. Missing dependencies: %s.', implode(', ', $missing)), JLog::ERROR, 'com_braftonarticles');
@@ -229,6 +238,13 @@ function onAfterRoute()
                         $controller->execute('loadArticles');
                     }
                     if($check == 'both' || $check == 'videos'){
+                        
+                        //check for video dependancies
+                        if(!ini_get('allow_url_fopen')){
+                            $missing[] = 'allow_url_fopen';
+                            JLog::add(sprintf('Cannot trigger Video Import. Missing dependencies: %s.', implode(', ', $missing)), JLog::ERROR, 'com_braftonarticles');
+				            return;
+                        }
                         $controller->execute('loadVideos');
                     }
                 }
@@ -270,7 +286,6 @@ private function updateArticlesEnabled()
     private function importStop(){
         $db = JFactory::getDbo();
         $q = $db->getQuery(true);
-
         $q->select($q->qn('value'))->from('#__brafton_options')->where($q->qn('option') . ' = ' . $q->q('stop-importer'));
 
         $db->setQuery($q);

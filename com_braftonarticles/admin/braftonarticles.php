@@ -10,21 +10,7 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_braftonarticles'))
 {
 	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
-/*
-$version = new JVersion();
-$joomlaVersion = $version->getShortVersion();
-$view = '';
-$task = '';
 
-if (version_compare($joomlaVersion, '2.5', '<'))
-{
-	$view = strtolower(JRequest::getVar('view', 'options'));
-	$task = JRequest::getCmd('task');
-}
-else
-{
-
-	*/
 	$jinput = JFactory::getApplication()->input;
 	$view = strtolower($jinput->get('view', 'options'));
 	$task = $jinput->get('task');

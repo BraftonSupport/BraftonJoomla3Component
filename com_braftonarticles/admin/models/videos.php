@@ -34,8 +34,9 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
 	{
 		//assign the XML data specific to this article to $thisArticle, for handling
 		$thisArticle = $this->client->Articles()->Get( $article->id );
-
-		JLog::add(sprintf('Loading article "%s" (%d).', trim($thisArticle->fields['title']), $article->id), JLog::DEBUG, 'com_braftonarticles');
+        if($this->debug){
+		  JLog::add(sprintf('Loading article "%s" (%d).', trim($thisArticle->fields['title']), $article->id), JLog::DEBUG, 'com_braftonarticles');
+        }
 		
 		$content = $this->getTable('content');
 		$data = $this->convertToContent($article);
@@ -223,8 +224,9 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
 		{     
             $a_categories = $this->client->Categories();
             $cat_id = $a_categories->ListForArticle($article->id, 0, 100)->items[0]->id;
-
-			JLog::add(sprintf('the category id is %s', $cat_id ), JLog::WARNING, 'com_braftonarticles');
+            if($this->debug){
+			 JLog::add(sprintf('the category id is %s', $cat_id ), JLog::WARNING, 'com_braftonarticles');
+            }
             
             $category = $cat_id;
             $catId = $this->getCategoryId($category);
@@ -268,12 +270,14 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
             return $return;
         }
         else{
-            $db = JFactory::getDbo();
-            $q = $db->getQuery(true);
+            //$db = JFactory::getDbo();
+            //$q = $db->getQuery(true);
             JLog::add(sprintf('the category id %s did not exists.  Assigning master category.', $category ), JLog::WARNING, 'com_braftonarticles');
-            $q->select('cat_id')->from('#__brafton_categories')->where('brafton_cat_id = ' . $q->q($brafCatId));
-            $db->setQuery($q);
-            return $db->loadResult();
+            //$q->select('value')->from('#__brafton_options')->where('option = ' . $q->quote('parent-category'));
+            //$db->setQuery($q);
+            //return $db->loadResult();
+            $this->options->load('parent-category');
+            return $this->options->value;
         }
 	}
     private function generate_embeed_code($video, $article)
@@ -326,7 +330,7 @@ class BraftonArticlesModelVideos extends BraftonArticlesModelParent
             $endBackground = $this->options->value;
             $videoBackground = '';
             if($endBackground != '' || $endBackground != NULL){
-                $videoBackground = "background: '$endBackground',";
+                $videoBackground = "background: '\'$endBackground\'',";
             }
             $cta = <<<CTA
                     ,

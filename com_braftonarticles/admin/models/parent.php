@@ -19,6 +19,7 @@ class BraftonArticlesModelParent extends JModelList
 	protected $loadingMechanism;
     public   $importAssets;
     public $feedId;
+    protected $debug;
 	//video library classes
 	protected $videoClient;
 	protected $client;
@@ -50,7 +51,9 @@ class BraftonArticlesModelParent extends JModelList
 		JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components'.'/com_braftonarticles'.'/tables');
 		$this->options = $this->getTable('braftonoptions');
 
-		JLog::add('load parent.', JLog::INFO, 'com_braftonarticles');
+        if($this->debug){
+            JLog::add('load parent.', JLog::INFO, 'com_braftonarticles');
+        }
 
 		$this->options->load('api-key');
 		$API_Key = $this->options->value;
@@ -61,9 +64,19 @@ class BraftonArticlesModelParent extends JModelList
 		$error->set_brand($API_BaseURL);
         
         $this->options->load('debug');
-        $debug = $this->options->value;
-        $error->set_debug($debug);
-        
+        $this->debug = $this->options->value;
+        $error->set_debug($this->debug);
+        switch($this->debug){
+            case 'On':
+            $this->debug = true;
+            break;
+            case 'Off':
+            $this->debug = false;
+            break;
+            default:
+            $this->debug = false;
+            break;
+        }
 		$this->feed = new ApiHandler($API_Key, $API_BaseURL);
 
 		//load video options
@@ -101,7 +114,6 @@ class BraftonArticlesModelParent extends JModelList
 		if( ($secret_key == '') || ($public_key == '') )
 		{
             $this->importAssets = 'noVideos';
-			break;
 		} else {
 			$this->videoClient = new AdferoVideoClient ($baseURL, $public_key, $secret_key);
 			$this->client = new AdferoClient ($baseURL, $public_key, $secret_key);

@@ -5,7 +5,7 @@ JHTML::_('behavior.tooltip');
 
 ?>
 
-<form action="index.php?option=com_braftonarticles" method="post" name="adminForm" id="adminForm">
+<form action="index.php?option=com_braftonarticles" method="post" name="adminForm" id="adminForm" enctype="multipart/form-data">
 <div id="brafton-standard-opts">
 	<input type="hidden" name="task" value="" />
 <!-- Add video settings -->

@@ -58,8 +58,10 @@ class BraftonArticlesModelCategories extends BraftonArticlesModelParent
 		{
 			$categoryRow = JTable::getInstance('Category');
 			$brCategoryRow = JTable::getInstance('BraftonCategories', 'Table');
-JLog::add('category names in getCategories function :'.trim($category->getName()), JLog::INFO, 'com_braftonarticles');
-
+            if($this->debug){
+                JLog::add('category names in getCategories function :'.trim($category->getName()), JLog::INFO, 'com_braftonarticles');
+            }
+                
 			//check to see if category already exists
 			if (!$this->category_exists($category, $brCategoryRow))
 			{
@@ -77,14 +79,15 @@ JLog::add('category names in getCategories function :'.trim($category->getName()
 				}
 				//end checking for parent category 
 
-
-				JLog::add(sprintf('Warning:parent category is %d.', $parentId), JLog::WARNING, 'com_braftonarticles');
+                if($this->debug){
+				    JLog::add(sprintf('Warning:parent category is %d.', $parentId), JLog::WARNING, 'com_braftonarticles');
+                }
                 
 				$categoryRow =& JTable::getInstance('Category');
 				//try saving as objects instead
                 
                 $categoryRow->title = trim($category->getName());
-                $categoryRow->alias = strtolower(trim($category->getName()));
+                $categoryRow->alias = str_replace(' ','-',strtolower(trim($category->getName())));
                 $categoryRow->extension = 'com_content';
                 $categoryRow->published = 1;
                 $categoryRow->language = '*';
@@ -93,13 +96,15 @@ JLog::add('category names in getCategories function :'.trim($category->getName()
                 $categoryRow->access = 1;
 
                 $categoryRow->store();
-                JLog::add(sprintf('parent from database table  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
-                $oldParent = $categoryRow->set('parent_id', 15);
+                if($this->debug){
+                    JLog::add(sprintf('parent from database table  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
+                }
+                $oldParent = $categoryRow->set('parent_id', $parentId);
                 $oldLevel = $categoryRow->set('level', 2);
-                //$oldPath = $categoryRow->set('path', 'video/'.$categoryRow->alias);
-                JLog::add(sprintf('parent from database table after reseting %d.', $oldParent), JLog::WARNING, 'com_braftonarticles');
                 $categoryRow->store();
-                JLog::add(sprintf('parent from database table after saving the reset  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
+                if($this->debug){
+                    JLog::add(sprintf('parent from database table after saving the reset  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
+                }
 				$brCategoryData['id'] = null;
 				$brCategoryData['cat_id'] = $categoryRow->id;
 				$brCategoryData['brafton_cat_id'] = (int) $category->getId();
@@ -109,18 +114,17 @@ JLog::add('category names in getCategories function :'.trim($category->getName()
     }
     
     private function VideoCategories(){
-        JLog::add('in the videoCategories function', JLog::WARNING, 'com_braftonarticles');
         $ClientCategory = $this->client->Categories();
         $cNum = $ClientCategory->ListCategoriesForFeed($this->feedId, 0, 100,'','')->totalCount;
-        JLog::add('number of items in feed are'.$cNum, JLog::WARNING, 'com_braftonarticles');
         $categoryList = array();
         for($i=0;$i<$cNum;$i++){
             $catId = $ClientCategory->ListCategoriesForFeed($this->feedId,0,100,'','')->items[$i]->id;
             $catNew = $ClientCategory->Get($catId);
             $categoryList[] = array($catId, $catNew->name);
-            JLog::add(sprintf('video cat to check is %s with id %d', $catNew->name, $catId), JLog::WARNING, 'com_braftonarticles');
+            if($this->debug){
+                JLog::add(sprintf('video cat to check is %s with id %d', $catNew->name, $catId), JLog::WARNING, 'com_braftonarticles');
+            }
         }
-        JLog::add('in the videoCategories function before the aech loop', JLog::WARNING, 'com_braftonarticles');
 		foreach ($categoryList as $category)
 		{
 			$categoryRow = JTable::getInstance('Category');
@@ -142,15 +146,12 @@ JLog::add('category names in getCategories function :'.trim($category->getName()
 					//$parentId = 1;
 				}
 				//end checking for parent category 
-
-
-				JLog::add(sprintf('Warning:parent category is %d.', $parentId), JLog::WARNING, 'com_braftonarticles');
                 
 				$categoryRow =& JTable::getInstance('Category');
 				//try saving as objects instead
                 
                 $categoryRow->title = trim($category[1]);
-                $categoryRow->alias = strtolower(trim($category[1]));
+                $categoryRow->alias = str_replace(' ','-',strtolower(trim($category[1])));
                 $categoryRow->extension = 'com_content';
                 $categoryRow->published = 1;
                 $categoryRow->language = '*';
@@ -158,21 +159,15 @@ JLog::add('category names in getCategories function :'.trim($category->getName()
                 $categoryRow->metadata = '{"author":"","robots":"noindex, follow"}';
                 $categoryRow->access = 1;
                 $categoryRow->store();
-                /*
-				if (!$categoryRow->save($categoryData))
-				{
-					// if all our failsafes have failed then this category is no good.
-					// don't save; we'll get downstream notices for support/debug.
-					JLog::add(sprintf('Error: Unable to add category %s - %s', $category->getName(), $categoryRow->getError()), JLog::ERROR, 'com_braftonarticles');
-					continue;
-				}
-				*/
-                JLog::add(sprintf('parent from database table  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
+                if($this->debug){
+                    JLog::add(sprintf('parent from database table  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
+                }
                 $oldParent = $categoryRow->set('parent_id', $parentId);
                 $oldLevel = $categoryRow->set('level', 2);
-                JLog::add(sprintf('parent from database table after reseting %d.', $oldParent), JLog::WARNING, 'com_braftonarticles');
+                if($this->debug){
+                    JLog::add(sprintf('parent from database table after reseting %d.', $oldParent), JLog::WARNING, 'com_braftonarticles');
+                }
                 $categoryRow->store();
-                JLog::add(sprintf('parent from database table after saving the reset  %d.', $categoryRow->parent_id), JLog::WARNING, 'com_braftonarticles');
 				$brCategoryData['id'] = null;
 				$brCategoryData['cat_id'] = $categoryRow->id;
 				$brCategoryData['brafton_cat_id'] = $category[0];

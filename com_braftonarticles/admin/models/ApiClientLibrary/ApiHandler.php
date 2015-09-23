@@ -30,7 +30,7 @@ class ApiHandler {
         $this->API_KEY = $API_KEY;
         $trimmedUrl =  rtrim($apiUrl, "/");
         $this->apiUrl = $trimmedUrl . "/";
-        JLog::add('load api handler.', JLog::INFO, 'com_braftonarticles');
+        //JLog::add('load api handler.', JLog::INFO, 'com_braftonarticles');
        
         $xh = new XMLHandler($this->getFeedUrl());
         

@@ -77,36 +77,13 @@ $result = $db->query();
 		$this->setdatabase($options['published-state'],'published-state');
 		$this->setdatabase($options['update-articles'],'update-articles');
 		$this->setdatabase($options['parent-category'],'parent-category');
-
-		//video related settings
-        /*
-		$this->setdatabase($options['secret-key'], 'secret-key');
-		$this->setdatabase($options['public-key'], 'public-key');
-		$this->setdatabase($options['feed-number'], 'feed-number');
         
-        //video CTA's
-        $this->setdatabase($options['pause-text'], 'pause-text');
-        $this->setdatabase($options['pause-link'], 'puase-link');
-        $this->setdatabase($options['pause-asset-id'], 'pause-asset-id');
-        $this->setdatabase($options['end-title'], 'end-title');
-        $this->setdatabase($options['end-subtitle'], 'end-subtitle');
-        $this->setdatabase($options['end-text'], 'end-text');
-        $this->setdatabase($options['end-link'], 'end-link');
-        $this->setdatabase($options['end-asset-id'], 'end-asset-id');
-        //section for uploading background image for video cta's
-        if($_FILES['end-background']['name'] != ''){
-            $fileUpload = $_FILES['end-background'];
-            $fileOption = $this->saveImage($fileUpload);
-            JFactory::getApplication()->enqueueMessage(sprintf('the fileoption is %s', $fileOption));
-            $this->setdatabase($fileOption, 'end-background');
-        }
-        */
 		//import articles, videos or both
 		$this->setdatabase($options['import-assets'], 'import-assets');
         $this->setdatabase($options['stop-importer'], 'stop-importer');
         $this->setdatabase($options['debug'], 'debug');
 		 
-		JFactory::getApplication()->enqueueMessage('Your options have successfully been saved.  Please note that your articles will not import until you have activated the <a href="index.php?option=com_plugins">bundled cron plugin</a>.');
+		JFactory::getApplication()->enqueueMessage('Your options have successfully been saved.  Please note that your articles will not import until you have activated the <a href="index.php?option=com_plugins">Brafton Cron and Brafton Content Plugins</a>.');
 	}
 
 
