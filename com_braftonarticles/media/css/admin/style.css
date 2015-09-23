@@ -83,9 +83,21 @@ div > .setting:last-child {
 	margin-bottom: 0;
 }
 div.setting p:before{
-    width:25px;
-    height:25px;
-    content:'a';
+    width: 15px;
+    height: 15px;
+    content: '!';
+    border: 1px solid red;
+    display: block;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    font-weight: 900;
+    position: relative;
+    top: -25px;
+    left: -25px;
+}
+div.setting p span{
+    display:none;
 }
 div.setting p:hover span{
     display:inline-block;
