@@ -19,7 +19,7 @@ class BraftonArticlesModelParent extends JModelList
 	protected $loadingMechanism;
     public   $importAssets;
     public $feedId;
-    private $debug;
+    protected $debug;
 	//video library classes
 	protected $videoClient;
 	protected $client;
