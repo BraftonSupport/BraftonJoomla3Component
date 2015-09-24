@@ -10,6 +10,7 @@ Component for Importing content from your Brafton/ContentLEAD/ or Castleford API
 ##Configure Joomla 3##
 
 1. Set up a Category to use for import. {recommend blog, news ect}
+    _NOTE: This category will also be used as a fallback if no category can be attained form the xml feed_
 2. Set up a Menu Item as a blog list.
 	1. Under Details select the category you created in the previous step.
 	2. Under Category change Subcategory levels to "none"
