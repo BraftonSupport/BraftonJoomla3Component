@@ -60,7 +60,7 @@
 	</administration>
 	
     <updateservers>
-        <server type="component" priority="2" name="Brafton Update"><![CDATA[http://test.updater.cl-subdomains.com/u/joomla3/update/]]></server>
+        <server type="extension" priority="2" name="Brafton Importer"><![CDATA[http://updater.brafton.com/u/joomla3/update/]]></server>
     </updateservers>
 	<media destination="com_braftonarticles">
 		<folder>media/css</folder>
