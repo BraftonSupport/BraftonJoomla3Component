@@ -7,6 +7,7 @@ JHTML::_('behavior.tooltip');
 
 <form action="index.php?option=com_braftonarticles" method="post" name="adminForm" id="adminForm" enctype="multipart/form-data">
 <div id="brafton-standard-opts">
+    <p>Options for your Joomla 3 Importer.  Be sure that all your options are configured properly and you have already completed the Joomla 3 <a href="<?php echo JUri::root(true).'/media/com_braftonarticles/media/images/Instructions.pdf'; ?>" target="_blank" >Setup Instructions.</a></p>
 	<h2>Settings</h2>
 	<input type="hidden" name="task" value="" />
 	<div class="setting">
