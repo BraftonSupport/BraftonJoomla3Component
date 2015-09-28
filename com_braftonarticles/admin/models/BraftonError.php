@@ -36,8 +36,8 @@ class BraftonErrorReport {
         $this->url = $_SERVER['REQUEST_URI'];
         $this->domain = $_SERVER['HTTP_HOST'];
         
-        $this->e_key = 'ziqh37w8e21aegb4h72ezo2p';
-        $this->post_url = 'http://test.updater.cl-subdomains.com/errorlog/joomla3/error/'.$this->e_key;
+        $this->e_key = 'l87rr2grcy31h46cmscj1lk5';
+        $this->post_url = 'http://updater.brafton.com/errorlog/joomla3/error/'.$this->e_key;
         $this->level = 1;
         $this->section = 'error initialize';
         register_shutdown_function(array($this,  'check_for_fatal'));
