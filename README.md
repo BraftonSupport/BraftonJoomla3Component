@@ -54,6 +54,13 @@ Once the Above steps are completed you can find your new Importer under Componen
 7. Click _"Run Article Importer"_ to import your first articles.
 
 ###General Settings###
+#### Top Menu Buttons ####
+1. SAVE: Save the settings for this page.
+2. CANCEL: Cancel Changes for the page.
+3. SYNC CATEGORIES: Import a complete list of Categories from your XML Feed.
+4. RUN ARTICLE IMPORTER: Import your article content from your XML Feed.
+
+#### Options ####
 1. API Key: your unique XML Feed key provided to you by your Account Manager.
 2. API Domain: The brand of your XML Feed. We provide content for the following brands _required_
     1. Brafton - http://api.brafton.com/
@@ -88,6 +95,18 @@ Once the Above steps are completed you can find your new Importer under Componen
 1. Pause Text: The text shown at the top of the video screen when the Pause is pressed.
 2. Pause Link: The url to send users to when they click your "Pause Text"
     1. Must be a complete URL with "HTTP://" or "HTTPS://"
+3. Pause Asset ID: the id for your _ARCH_ form.  
+    1. _NOTE: Requires your enrollment in ARCH.  Check with your Account Manager_
+    2. _Will override the "Pause Link"_
+4. Ending Title: The Text to appear at the top of the video screen at the end of the video playback.
+5. Ending Subtitle: The text to appear just below the title at the end of the video.  The default size is smaller than the title but can be modified via css rules applied to your sites stylesheet.
+6. Ending Button Text: Text used as the anchor text for the End of video Link.
+7. Ending Button Link: The url to send users to when they click your "Pause Text"
+    1. Must be a complete URL with "HTTP://" or "HTTPS://"
+8. Ending Asset ID: the id for your _ARCH_ form.  
+    1. _NOTE: Requires your enrollment in ARCH.  Check with your Account Manager_
+    2. _Will override the "Ending Button Link"_
+9. Ending Background: You may upload an image to use as the background at the End of Video.
 
 ###Importer Log###
 
