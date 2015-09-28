@@ -15,6 +15,7 @@ class BraftonArticlesViewLog extends JViewLegacy
 	{
 		$toolbar = JToolBar::getInstance();
 		JHtml::stylesheet('com_braftonarticles/media/css/admin/style.css', 'media/');
+        $document = JFactory::getDocument();
         $document->addstylesheet(JUri::root(true).'/media/com_braftonarticles/media/css/admin/style.css');
 		JToolBarHelper::title('Brafton Article Importer','logo');
 		JToolBarHelper::divider();
