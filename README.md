@@ -87,6 +87,13 @@ Once the Above steps are completed you can find your new Importer under Componen
     1. Do to normal operation of the Joomla 3 CMS should the importer result in a fatal error this option will turn "ON" and notify your Account Manager of the error.
     
 ###Video Settings###
+#### Top Menu Buttons ####
+1. SAVE: Save the settings for this page.
+2. CANCEL: Cancel Changes for the page.
+3. SYNC CATEGORIES: Import a complete list of Categories from your XML Feed.
+4. RUN VIDEO IMPORTER: Import your video content from your Video XML Feed.
+
+#### Options #####
 1. Public Key: Your Public Key provided to you by your Account Manager to access your Video XML Feed.
 2. Secret Key: Your Unique key provided to you by your Account Manager to identify your Video XML Feed.
 3. Feed Number: Your Feed Number for your Video feed. _Normally 0 unless you have more than 1 video feed_
@@ -109,22 +116,30 @@ Once the Above steps are completed you can find your new Importer under Componen
 9. Ending Background: You may upload an image to use as the background at the End of Video.
 
 ###Importer Log###
+#### Top Menu Buttons ####
+1. CLEAR LOG: Clear all current Errors and/or Messages.
+    1. _Be sure you have investigated or downloaded all the current errors before clearing your log_
+2. DOWNLOAD LOG: Download a text file of your current Importer Log.
+    1. _When requesting tech support be sure to include a copy of the latest log_
 
-##Brafton Content###
+## Plugins ##
 
-##Brafton Cron###
+###Brafton Content####
+The Brafton Content plugin helps route Joomla 3 functions to your Imported content.  Without this plugin enabled there could be issues with editing and deleting your imported content.
 
+###Brafton Cron####
+The Brafton Cron plugins sets up a _Sudo - Cron_ to import your content on a scheduled basis.  The default schedule will run each hour.
 
 ##Optional##
 
 ##Set up Category Widget##
+To display a list of Categories in a sidebar position.
+
 Extensions->modules
 Create new select Articles category
 select the parent category we created from the setup.
 add to appropriate position on the correct page.
 
-##Set up Archive Widget##
-@todo learn to create proper archives.
 
 #To find appropriate widget positions#
 go to template manager select templates.
@@ -132,4 +147,4 @@ select options top right corner
 turn on preview modules positions.
 view page in question with the parameter ?tp=1 added to the url
 
-*NOTE: be sure to turn this off when youa re done*
+*NOTE: be sure to turn this off when you are done*
