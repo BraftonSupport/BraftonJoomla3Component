@@ -12,7 +12,7 @@
 		<filename plugin="braftoncron">braftoncron.php</filename>
 	</files>
 	<params>
-		<param name="interval" type="text" default="5" label="Set Interval" description="Set cron interval in minutes" />
+		<param name="interval" type="text" default="60" label="Set Interval" description="Set cron interval in minutes" />
 	</params>
 	<config>
 		<fields name="params">

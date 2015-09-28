@@ -116,7 +116,7 @@ class BraftonErrorReport {
             $post_args = array(
                     'error' => $errorlog
             );
-            JLog::add(sprintf('Error: Testing Error Report: %s', $errorlog), JLog::ERROR, 'com_braftonarticles');
+            JLog::add(sprintf('Error: %s', $errorlog), JLog::ERROR, 'com_braftonarticles');
             //$this->level = 2;
             if(($errorLevel == 1 || ($this->debug == true && $this->level == 1)) && strpos($this->domain, 'localhost') === false){
                 //prevent possible loop on some systems
