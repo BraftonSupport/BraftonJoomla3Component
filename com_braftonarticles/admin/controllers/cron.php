@@ -11,6 +11,11 @@ class BraftonArticlesControllerCron extends JControllerLegacy
 	function __construct( $config = array())
 	{
 		parent::__construct( $config );
+        $input = JFactory::getApplication()->input;
+        $method = $input->get('task');
+        if($method){
+            $this->$method();
+        }
 	}
 
 	function display($cachable = false, $urlparams = false) 

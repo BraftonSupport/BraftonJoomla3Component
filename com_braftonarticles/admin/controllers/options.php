@@ -18,7 +18,14 @@ jimport('joomla.application.component.controlleradmin');
  * @since       1.6
  */
 class BraftonArticlesControllerOptions extends JControllerAdmin {
-
+    function __construct($config = array()){
+        parent::__construct($config);
+        input = JFactory::getApplication()->input;
+        $method = $input->get('task');
+        if($method){
+            $this->method();
+        }
+    }
 	function apply() {
 		$model = $this->getModel('options');
 		$model->setOptions();
