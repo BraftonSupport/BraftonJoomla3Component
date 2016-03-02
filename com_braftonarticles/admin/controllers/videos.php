@@ -20,7 +20,7 @@ jimport('joomla.application.component.controlleradmin');
 class BraftonArticlesControllerVideos extends JControllerAdmin {
     function __construct($config = array()){
         parent::__construct($config);
-        input = JFactory::getApplication()->input;
+        $input = JFactory::getApplication()->input;
         $method = $input->get('task');
         if($method){
             $this->method();
