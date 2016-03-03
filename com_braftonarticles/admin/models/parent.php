@@ -27,6 +27,7 @@ class BraftonArticlesModelParent extends JModelList
 	
 	function __construct()
 	{
+        
 		parent::__construct();
 		$error = new BraftonErrorReport();
         $this->importAssets = 'articles';

@@ -17,7 +17,7 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="interval" type="text" default="5" label="Set Interval" description="Set cron interval in minutes" />
+				<field name="interval" type="text" default="60" label="Set Interval" description="Set cron interval in minutes" />
 			</fieldset>
 		</fields>
 	</config>
