@@ -23,7 +23,7 @@ class BraftonArticlesControllerVideos extends JControllerAdmin {
         $input = JFactory::getApplication()->input;
         $method = $input->get('task');
         if($method){
-            $this->method();
+            $this->$method();
         }
     }
 	function apply() {
