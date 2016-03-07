@@ -59,7 +59,7 @@ $result = $db->query();
 		$API_pattern = "[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}";
 		$baseURL_pattern = "^(http:\/\/)?api\.[^.]*\.(com|com\.au|co\.uk)\/";
 		$options = JRequest::get('post');
-		
+		/*
 		if(!preg_match('/'.$API_pattern.'/', $options['api-key'], $apiKey)) {
 			JError::raiseWarning(100, 'There was a problem registering your API key.  Please double check and try again.');
 			return;
@@ -68,7 +68,7 @@ $result = $db->query();
 			JError::raiseWarning(100, 'There was a problem registering your base URL.  Please double check and try again.');
 			return;
 		}
-
+        */
 
 		$this->setdatabase($options['api-key'],'api-key');
 		$this->setdatabase($options['base-url'],'base-url');
@@ -83,7 +83,7 @@ $result = $db->query();
         $this->setdatabase($options['stop-importer'], 'stop-importer');
         $this->setdatabase($options['debug'], 'debug');
 		 
-		JFactory::getApplication()->enqueueMessage('Your options have successfully been saved.  Please note that your articles will not import until you have activated the <a href="index.php?option=com_plugins">Brafton Cron and Brafton Content Plugins</a>.');
+		//JFactory::getApplication()->enqueueMessage('Your options have successfully been saved.  Please note that your articles will not import until you have activated the <a href="index.php?option=com_plugins">Brafton Cron and Brafton Content Plugins</a>.');
 	}
 
 

@@ -23,12 +23,13 @@ class BraftonArticlesControllerOptions extends JControllerAdmin {
         $input = JFactory::getApplication()->input;
         $method = $input->get('task');
         if($method){
-            $this->method();
+            $this->$method();
         }
     }
 	function apply() {
 		$model = $this->getModel('options');
 		$model->setOptions();
+        $msg = 'Your options have successfully been saved.  Please note that your articles will not import until you have activated the <a href="index.php?option=com_plugins">Brafton Cron and Brafton Content Plugins</a>.';
 		$this->setRedirect('index.php?option=com_braftonarticles', $msg);
 	}
 	

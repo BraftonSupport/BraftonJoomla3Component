@@ -107,7 +107,7 @@ class BraftonErrorReport {
         //assigns values for missing arguments on custom exceptions from the api libarary
         $errorLevel = method_exists($e,'getseverity')? $e->getseverity(): 1;
         //if errorLevel == 1 (script stop running error) and the error was not part of one of the below know issues for those pages runs error reporting.
-        if ( ($errorLevel == 1) || ($this->debug) && ($this->check_known_errors($e) ){
+        if ( ($errorLevel == 1) || ($this->debug) && ($this->check_known_errors($e)) ){
 
             //$brafton_error = $this->b_e_log();
             $errorlog = array(
@@ -124,7 +124,7 @@ class BraftonErrorReport {
             );
             JLog::add(sprintf('Error: %s', $errorlog), JLog::ERROR, 'com_braftonarticles');
             //$this->level = 2;
-            if(($errorLevel == 1 || ($this->debug == true && $this->level == 1)) && strpos($this->domain, 'localhost') === false){
+            if( ($errorLevel == 1) && strpos($this->domain, 'localhost') === false){
                 //prevent possible loop on some systems
                 $ch  = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $this->post_url);
